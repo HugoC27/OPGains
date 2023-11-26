@@ -35,7 +35,7 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFB4F1C1))
+            .background(Color.White)
     ){
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
