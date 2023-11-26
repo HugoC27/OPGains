@@ -45,8 +45,8 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = modifier
-                    .height(200.dp)
-                    .width(200.dp)
+                    .height(250.dp)
+                    .width(250.dp)
             )
             TitleText(
                 titleStr = title,
