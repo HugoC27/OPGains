@@ -18,7 +18,7 @@ fun SetupNavGraph(
         ) {
             HomeScreen(
                 title = "OPGains",
-                buttonText = "Start workout!",
+                buttonText = "START WORKOUT",
                 navController = navController
             )
         }
@@ -26,6 +26,20 @@ fun SetupNavGraph(
             route = Screen.Detail.route
         ) {
             DetailScreen(
+                navController = navController
+            )
+        }
+        composable(
+            route = Screen.Contact.route
+        ) {
+            ContactScreen(
+                navController = navController
+            )
+        }
+        composable(
+            route = Screen.Settings.route
+        ) {
+            SettingsScreen(
                 navController = navController
             )
         }
