@@ -39,7 +39,10 @@ fun ContactScreen(navController: NavController, modifier: Modifier = Modifier) {
             navController = navController,
             icon1 = Icons.Filled.Phone,
             icon2 = Icons.Filled.Home,
-            icon3 = Icons.Filled.Settings
+            icon3 = Icons.Filled.Settings,
+            barButtonColor1 = (Color(0xFF6B7534)),
+            barButtonColor2 = (Color(0xFF94A150)),
+            barButtonColor3 = (Color(0xFF94A150))
         )
     }
 }

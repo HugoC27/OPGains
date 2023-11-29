@@ -1,5 +1,7 @@
 package com.example.opgains
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -11,10 +13,16 @@ fun SetupNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route
+        startDestination = Screen.Home.route,
+        enterTransition = {
+            EnterTransition.None
+        },
+        exitTransition = {
+            ExitTransition.None
+        }
     ){
         composable(
-            route = Screen.Home.route
+            route = Screen.Home.route,
         ) {
             HomeScreen(
                 title = "OPGains",
@@ -23,14 +31,14 @@ fun SetupNavGraph(
             )
         }
         composable(
-            route = Screen.Detail.route
+            route = Screen.Detail.route,
         ) {
             DetailScreen(
                 navController = navController
             )
         }
         composable(
-            route = Screen.Contact.route
+            route = Screen.Contact.route,
         ) {
             ContactScreen(
                 navController = navController

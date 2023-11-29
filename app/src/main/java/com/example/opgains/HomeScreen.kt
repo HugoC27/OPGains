@@ -95,7 +95,10 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
                 navController = navController,
                 icon1 = Icons.Filled.Phone,
                 icon2 = Icons.Filled.Home,
-                icon3 = Icons.Filled.Settings
+                icon3 = Icons.Filled.Settings,
+                barButtonColor1 = (Color(0xFF94A150)),
+                barButtonColor2 = (Color(0xFF6B7534)),
+                barButtonColor3 = (Color(0xFF94A150))
             )
         }
     }
@@ -125,8 +128,9 @@ fun ButtonText(buttonTextStr: String, modifier: Modifier = Modifier){
 }
 
 @Composable
-fun BottomBar(icon1: ImageVector, icon2: ImageVector, icon3: ImageVector, navController: NavController, modifier: Modifier = Modifier) {
-    val buttonColor = ButtonDefaults.buttonColors(Color(0xFF94A150))
+fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: Color,
+              icon1: ImageVector, icon2: ImageVector, icon3: ImageVector,
+              navController: NavController, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
@@ -136,7 +140,7 @@ fun BottomBar(icon1: ImageVector, icon2: ImageVector, icon3: ImageVector, navCon
             .height(64.dp)
     ){
         Button(onClick = { navController.navigate(route = Screen.Contact.route) },
-            colors = buttonColor){
+            colors = ButtonDefaults.buttonColors(barButtonColor1)){
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon1,
@@ -145,7 +149,7 @@ fun BottomBar(icon1: ImageVector, icon2: ImageVector, icon3: ImageVector, navCon
             Spacer(Modifier.width(10.dp))
         }
         Button(onClick = { navController.navigate(route = Screen.Home.route) },
-            colors = buttonColor){
+            colors = ButtonDefaults.buttonColors(barButtonColor2)){
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon2,
@@ -154,7 +158,7 @@ fun BottomBar(icon1: ImageVector, icon2: ImageVector, icon3: ImageVector, navCon
             Spacer(Modifier.width(10.dp))
         }
         Button(onClick = { navController.navigate(route = Screen.Settings.route) },
-            colors = buttonColor){
+            colors = ButtonDefaults.buttonColors(barButtonColor3)){
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon3,
