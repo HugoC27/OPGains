@@ -75,7 +75,7 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
                 modifier = modifier
                     .height(90.dp)
             )
-            Button(onClick = { navController.navigate(route = Screen.Detail.route) },
+            Button(onClick = { navController.navigate(route = Screen.VisualizationFront.route) },
                 colors = buttonColor){
                 ButtonText(
                     buttonTextStr = buttonText,
@@ -138,7 +138,7 @@ fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: C
             .background(Color(0xFF4B5320))
             .fillMaxWidth()
             .height(64.dp)
-    ){
+    ) {
         Button(onClick = { navController.navigate(route = Screen.Contact.route) },
             colors = ButtonDefaults.buttonColors(barButtonColor1)){
             Spacer(Modifier.width(10.dp))

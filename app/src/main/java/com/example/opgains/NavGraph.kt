@@ -51,5 +51,19 @@ fun SetupNavGraph(
                 navController = navController
             )
         }
+        composable(
+            route = Screen.VisualizationFront.route
+        ) {
+            VisualizationFrontScreen(
+                navController = navController
+            )
+        }
+        composable(
+            route = Screen.VisualizationBack.route
+        ) {
+            VisualizationBackScreen(
+                navController = navController
+            )
+        }
     }
 }
