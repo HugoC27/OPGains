@@ -129,6 +129,13 @@ fun VisualizationFrontScreen(navController: NavController, modifier: Modifier = 
             visButtonColor2 = (Color(0xFF94A150))
         )
     }
+    Box(
+        contentAlignment = Alignment.TopStart,
+        modifier = modifier
+            .fillMaxSize()
+    ) {
+        VisualizationTopBar(navController = navController)
+    }
 }
 
 @Composable
