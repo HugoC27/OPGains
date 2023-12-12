@@ -31,9 +31,10 @@ fun SetupNavGraph(
             )
         }
         composable(
-            route = Screen.Detail.route,
+            route = Screen.Tracker.route,
         ) {
-            DetailScreen(
+            TrackerScreen(
+                trackerButtonText="Visualize",
                 navController = navController
             )
         }

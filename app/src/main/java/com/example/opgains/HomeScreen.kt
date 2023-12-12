@@ -75,7 +75,7 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
                 modifier = modifier
                     .height(90.dp)
             )
-            Button(onClick = { navController.navigate(route = Screen.VisualizationFront.route) },
+            Button(onClick = { navController.navigate(route = Screen.Tracker.route) },
                 colors = buttonColor){
                 ButtonText(
                     buttonTextStr = buttonText,
