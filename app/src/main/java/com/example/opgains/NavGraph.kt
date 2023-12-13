@@ -35,7 +35,8 @@ fun SetupNavGraph(
         ) {
             TrackerScreen(
                 trackerButtonText="Visualize",
-                navController = navController
+                navController = navController,
+                workoutExercises=0
             )
         }
         composable(
