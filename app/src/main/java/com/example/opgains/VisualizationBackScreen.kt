@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -136,11 +137,11 @@ fun VisualizationTopBar(navController: NavController, modifier: Modifier = Modif
             .height(54.dp)
     ) {
         Spacer(Modifier.width(20.dp))
-        Button(onClick = { navController.navigate(route = Screen.Home.route) },
+        Button(onClick = { navController.navigate(route = Screen.Tracker.route) },
             colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
         ) {
             Icon(
-                imageVector = Icons.Filled.Home,
+                imageVector = Icons.Filled.ArrowBack,
                 contentDescription = "home_icon"
             )
         }
