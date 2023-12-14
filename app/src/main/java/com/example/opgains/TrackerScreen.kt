@@ -3,6 +3,7 @@ package com.example.opgains
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,6 +38,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,6 +53,18 @@ import com.example.opgains.ui.theme.OPGainsTheme
 fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
                   trackerButtonText: String, workoutExercises:Int) {
         var amount by remember { mutableIntStateOf(workoutExercises) }
+    val camoBackground = painterResource(R.drawable.camo_background)
+
+    Image(
+        painter = camoBackground,
+        contentDescription = "Background",
+        contentScale = ContentScale.Crop,
+        alpha = 0.6F,
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(0xFFA4B25C))
+
+    )
 
     @Composable
     fun TrackerBottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: Color,
@@ -104,9 +120,9 @@ fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
 
         LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
 
-            items(items = names) { name ->
+            items(items = names) { exName ->
 
-                ListItem(name = name)
+                ListItem(name = exName)
 
             }
 
@@ -145,7 +161,7 @@ fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
 
     ){
         Column (
-            modifier=modifier
+            modifier= modifier
                 .fillMaxSize()
                 .padding(16.dp)
                 .padding(top = 60.dp)
@@ -222,10 +238,10 @@ fun ListItem(name : String){
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness = Spring.StiffnessLow
-        )
+        ), label = ""
     )
 
-    Surface(color = (Color(0xFF94A150)),
+    Surface(color = (Color(0xFFFFFFFF)),
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)){
 
         Column(modifier = Modifier
@@ -244,7 +260,8 @@ fun ListItem(name : String){
                         fontSize = 20.sp)
                 }
 
-                OutlinedButton(onClick = { expanded.value = !expanded.value }) {
+                OutlinedButton( colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
+                    onClick = { expanded.value = !expanded.value }) {
                     Text(if (expanded.value) "Show less" else "Show more")
                 }
             }
@@ -254,7 +271,7 @@ fun ListItem(name : String){
                 Column(modifier = Modifier.padding(
                     bottom = extraPadding.coerceAtLeast(0.dp)
                 )) {
-                    Text(text = "Hugos riktiga namn är Hugo Lenfjärtsson")
+                    Text(text = "Sets: \nReps: \nWeight: ")
                 }
 
             }
@@ -265,6 +282,21 @@ fun ListItem(name : String){
 
 
 }
+
+/*@Composable
+fun IntTextField(){
+    var text by remember {
+        mutableStateOf("0")}
+
+        OutlinedTextField(
+            value=text,
+            onValueChange={
+                text=if(it.isEmpty() ||
+                    it.toIntOrNull() == null) "0" else it
+            },
+
+        )
+}*/
 
 
 
