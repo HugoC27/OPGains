@@ -7,4 +7,5 @@ sealed class Screen(val route: String) {
     object Settings: Screen(route = "settings_screen")
     object VisualizationFront: Screen(route = "visualization_front_screen")
     object VisualizationBack: Screen(route = "visualization_back_screen")
+    object Exercise: Screen(route = "visualization_back_screen")
 }

@@ -67,5 +67,12 @@ fun SetupNavGraph(
                 navController = navController
             )
         }
+        composable(
+            route = Screen.Exercise.route,
+        ) {
+            ExerciseScreen(
+                navController = navController,
+            )
+        }
     }
 }
