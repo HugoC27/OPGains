@@ -1,5 +1,6 @@
 package com.example.opgains
 
+import android.util.Log
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -48,6 +49,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.opgains.ui.theme.OPGainsTheme
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+
+import androidx.compose.ui.text.input.KeyboardType
+
 
 @Composable
 fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
@@ -115,19 +124,14 @@ fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
 
     @Composable
     fun ScrollableList(
-        names: List<String> = List(amount) { "$it" }
+        names: List<String> = List(amount) { "$it" },
+        onAddSet: (sets: Int, reps: Int, weight: Float) -> Unit
     ) {
-
         LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
-
             items(items = names) { exName ->
-
-                ListItem(name = exName)
-
+                ListItem(name = exName, onAddSet = onAddSet)
             }
-
         }
-
     }
 
     Box(
@@ -167,7 +171,11 @@ fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
                 .padding(top = 60.dp)
                 .padding(bottom = 60.dp)
         ){
-            ScrollableList()
+            ScrollableList(
+                onAddSet = { sets, reps, weight ->
+
+                }
+            )
 
         }
         Spacer(modifier = Modifier.height(60.dp))
@@ -229,10 +237,11 @@ fun TrackerButtonText(buttonTextStr: String, modifier: Modifier = Modifier) {
 
 
 
-@Composable
-fun ListItem(name : String){
 
-    val expanded = remember { mutableStateOf(false)}
+
+@Composable
+fun ListItem(name: String, onAddSet: (sets: Int, reps: Int, weight: Float) -> Unit) {
+    val expanded = remember { mutableStateOf(false) }
     val extraPadding by animateDpAsState(
         if (expanded.value) 24.dp else 0.dp,
         animationSpec = spring(
@@ -241,15 +250,15 @@ fun ListItem(name : String){
         ), label = ""
     )
 
-    Surface(color = (Color(0xFFFFFFFF)),
-        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)){
-
+    Surface(
+        color = (Color(0xFFFFFFFF)),
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    ) {
         Column(modifier = Modifier
             .padding(24.dp)
             .fillMaxWidth()) {
 
-            Row{
-
+            Row {
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -257,46 +266,117 @@ fun ListItem(name : String){
                     Text(
                         text = name,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp)
+                        fontSize = 20.sp
+                    )
                 }
 
-                OutlinedButton( colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
+                OutlinedButton(
+                    colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
                     onClick = { expanded.value = !expanded.value }) {
                     Text(if (expanded.value) "Show less" else "Show more")
                 }
             }
 
-            if (expanded.value){
+            if (expanded.value) {
+                // Display the set tracker for each exercise
+                SetTracker(onAddSet = onAddSet)
+            }
+        }
+    }
+}
 
-                Column(modifier = Modifier.padding(
-                    bottom = extraPadding.coerceAtLeast(0.dp)
-                )) {
-                    Text(text = "Sets: \nReps: \nWeight: ")
+@Composable
+fun SetTracker(onAddSet: (sets: Int, reps: Int, weight: Float) -> Unit) {
+    var setCount by remember { mutableStateOf(0) }
+    var setsData by remember { mutableStateOf<List<SetData>>(emptyList()) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        // Header
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp)
+        ) {
+            Text(text = "Set", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(text = "Reps", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(text = "Weight (kg)", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+        }
+
+        // Set rows
+        setsData.forEach { setData ->
+            SetRow(setData = setData) { newReps, newWeight ->
+                setsData = setsData.map {
+                    if (it.setNumber == setData.setNumber) {
+                        SetData(it.setNumber, newReps, newWeight)
+                    } else {
+                        it
+                    }
                 }
-
             }
         }
 
+        // Add Set button
+        Button(
+            onClick = {
+                setCount++
+                setsData = List(setCount) { SetData(it + 1, 0, 0.0f) }
+                onAddSet(0, 0, 0.0f)
+                Log.d("SetTracker", "Set count: $setCount, Sets data: $setsData")
+
+            },
+            modifier = Modifier
+                .align(Alignment.End)
+                .padding(top = 16.dp)
+        ) {
+            Icon(imageVector = Icons.Default.Add, contentDescription = "Add Set")
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(text = "Add Set")
+        }
     }
-
-
-
 }
 
-/*@Composable
-fun IntTextField(){
-    var text by remember {
-        mutableStateOf("0")}
-
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SetRow(setData: SetData, onValuesChanged: (Int, Float) -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp)
+    ) {
+        Text(text = "${setData.setNumber}", fontSize = 16.sp)
+        Spacer(modifier = Modifier.width(16.dp))
         OutlinedTextField(
-            value=text,
-            onValueChange={
-                text=if(it.isEmpty() ||
-                    it.toIntOrNull() == null) "0" else it
+            value = setData.reps.toString(),
+            onValueChange = {
+                onValuesChanged(it.toIntOrNull() ?: 0, setData.weight)
             },
-
+            label = { Text("Reps") },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            modifier= Modifier
+                .width(100.dp)
         )
-}*/
+        Spacer(modifier = Modifier.width(16.dp))
+        OutlinedTextField(
+            value = setData.weight.toString(),
+            onValueChange = {
+                onValuesChanged(setData.reps, it.toFloatOrNull() ?: 0.0f)
+            },
+            label = { Text("Weight") },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            modifier= Modifier
+                .width(100.dp)
+        )
+    }
+}
+
+data class SetData(val setNumber: Int, val reps: Int, val weight: Float)
+
 
 
 
