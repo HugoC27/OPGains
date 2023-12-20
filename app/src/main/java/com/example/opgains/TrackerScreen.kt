@@ -213,7 +213,24 @@ fun TrackerTopBar( navController: NavController, modifier: Modifier = Modifier, 
     ) {
 
         Button(
-            onClick = { navController.navigate(route = Screen.VisualizationFront.route) },
+            onClick = { navController.navigate(route = Screen.VisualizationFront.passAllScores(
+                calves = 2,
+                thigh = 3,
+                hip_abductor = 1,
+                abs = 5,
+                oblique = 1,
+                lats = 4,
+                chest = 5,
+                traps = 2,
+                neck = 4,
+                shoulder = 2,
+                triceps = 1,
+                biceps = 5,
+                forearms = 4,
+                hamstrings = 3,
+                glutes = 2,
+                lowerback = 3
+            )) },
             colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
         ) {
             TrackerButtonText(

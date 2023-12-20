@@ -34,7 +34,7 @@ fun SettingsScreen(navController: NavController, modifier: Modifier = Modifier) 
         contentAlignment = Alignment.BottomStart,
         modifier = modifier
             .fillMaxSize()
-    ){
+    ) {
         BottomBar(
             navController = navController,
             icon1 = Icons.Filled.Phone,

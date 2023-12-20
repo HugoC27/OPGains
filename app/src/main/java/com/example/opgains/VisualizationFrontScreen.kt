@@ -29,20 +29,24 @@ import com.example.opgains.ui.theme.OPGainsTheme
 import androidx.compose.ui.graphics.ColorFilter
 
 @Composable
-fun VisualizationFrontScreen(navController: NavController, modifier: Modifier = Modifier) {
-    var scoreFrontCalf = 2
-    var scoreFrontThigh = 4
-    var scoreFrontHipAbductor = 1
-    var scoreFrontAbs = 4
-    var scoreFrontOblique = 5
-    var scoreFrontLats = 4
-    var scoreFrontChest = 3
-    var scoreFrontTraps = 2
-    var scoreFrontNeck = 1
-    var scoreFrontShoulder = 5
-    var scoreFrontTriceps = 2
-    var scoreFrontBiceps = 4
-    var scoreFrontForearms = 3
+fun VisualizationFrontScreen(navController: NavController,
+                             modifier: Modifier = Modifier,
+                             scoreCalves: Int = 0,
+                             scoreThigh: Int = 0,
+                             scoreHipAbductor: Int = 0,
+                             scoreAbs: Int = 0,
+                             scoreOblique: Int = 0,
+                             scoreLats: Int = 0,
+                             scoreChest: Int = 0,
+                             scoreTraps: Int = 0,
+                             scoreNeck: Int = 0,
+                             scoreShoulders: Int = 0,
+                             scoreTriceps: Int = 0,
+                             scoreBiceps: Int = 0,
+                             scoreForearms: Int = 0,
+                             scoreHamstrings: Int = 0,
+                             scoreGlutes: Int = 0,
+                             scoreLowerBack: Int = 0) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
@@ -55,67 +59,67 @@ fun VisualizationFrontScreen(navController: NavController, modifier: Modifier = 
         Image(
             painter = painterResource(R.drawable.front_calf),
             contentDescription = "front_calf",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontCalf)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreCalves)
         )
         Image(
             painter = painterResource(R.drawable.front_thigh),
             contentDescription = "front_thigh",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontThigh)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreThigh)
         )
         Image(
             painter = painterResource(R.drawable.front_hip_abductor),
             contentDescription = "front_hip_abductor",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontHipAbductor)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreHipAbductor)
         )
         Image(
             painter = painterResource(R.drawable.front_abs),
             contentDescription = "front_abs",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontAbs)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreAbs)
         )
         Image(
             painter = painterResource(R.drawable.front_obliques),
             contentDescription = "front_oblique",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontOblique)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreOblique)
         )
         Image(
             painter = painterResource(R.drawable.front_lats),
             contentDescription = "front_lats",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontLats)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreLats)
         )
         Image(
             painter = painterResource(R.drawable.front_chest),
             contentDescription = "front_chest",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontChest)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreChest)
         )
         Image(
             painter = painterResource(R.drawable.front_traps),
             contentDescription = "front_lats",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontTraps)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreTraps)
         )
         Image(
             painter = painterResource(R.drawable.front_neck),
             contentDescription = "front_neck",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontNeck)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreNeck)
         )
         Image(
             painter = painterResource(R.drawable.front_shoulders),
             contentDescription = "front_shoulder",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontShoulder)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreShoulders)
         )
         Image(
             painter = painterResource(R.drawable.front_tricep),
             contentDescription = "front_tricep",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontTriceps)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreTriceps)
         )
         Image(
             painter = painterResource(R.drawable.front_bicep),
             contentDescription = "front_biceps",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontBiceps)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreBiceps)
         )
         Image(
             painter = painterResource(R.drawable.front_forearms),
             contentDescription = "front_forearms",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreFrontForearms)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreForearms)
         )
     }
     Box(
@@ -126,7 +130,23 @@ fun VisualizationFrontScreen(navController: NavController, modifier: Modifier = 
         VisualizationBottomBar(
             navController = navController,
             visButtonColor1 = (Color(0xFF6B7534)),
-            visButtonColor2 = (Color(0xFF94A150))
+            visButtonColor2 = (Color(0xFF94A150)),
+            scoreCalves = scoreCalves,
+            scoreThigh = scoreThigh,
+            scoreHipAbductor = scoreHipAbductor,
+            scoreAbs = scoreAbs,
+            scoreOblique = scoreOblique,
+            scoreLats = scoreLats,
+            scoreChest = scoreChest,
+            scoreTraps = scoreTraps,
+            scoreNeck = scoreNeck,
+            scoreShoulders = scoreShoulders,
+            scoreTriceps = scoreTriceps,
+            scoreBiceps = scoreBiceps,
+            scoreForearms = scoreForearms,
+            scoreHamstrings = scoreHamstrings,
+            scoreGlutes = scoreGlutes,
+            scoreLowerBack = scoreLowerBack
         )
     }
     Box(
@@ -153,7 +173,23 @@ fun ColorVariableChecker(muscleVariable: Int): ColorFilter? {
 
 @Composable
 fun VisualizationBottomBar(visButtonColor1: Color, visButtonColor2: Color,
-                           navController: NavController, modifier: Modifier = Modifier) {
+                           navController: NavController, modifier: Modifier = Modifier,
+                           scoreCalves: Int,
+                           scoreThigh: Int,
+                           scoreHipAbductor: Int,
+                           scoreAbs: Int,
+                           scoreOblique: Int,
+                           scoreLats: Int,
+                           scoreChest: Int,
+                           scoreTraps: Int,
+                           scoreNeck: Int,
+                           scoreShoulders: Int,
+                           scoreTriceps: Int,
+                           scoreBiceps: Int,
+                           scoreForearms: Int,
+                           scoreHamstrings: Int,
+                           scoreGlutes: Int,
+                           scoreLowerBack: Int) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
@@ -162,7 +198,24 @@ fun VisualizationBottomBar(visButtonColor1: Color, visButtonColor2: Color,
             .fillMaxWidth()
             .height(64.dp)
     ) {
-        Button(onClick = { navController.navigate(route = Screen.VisualizationFront.route) },
+        Button(onClick = { navController.navigate(route = Screen.VisualizationFront.passAllScores(
+            calves = scoreCalves,
+            thigh = scoreThigh,
+            hip_abductor = scoreHipAbductor,
+            abs = scoreAbs,
+            oblique = scoreOblique,
+            lats = scoreLats,
+            chest = scoreChest,
+            traps = scoreTraps,
+            neck = scoreNeck,
+            shoulder = scoreShoulders,
+            triceps = scoreTriceps,
+            biceps = scoreBiceps,
+            forearms = scoreForearms,
+            hamstrings = scoreHamstrings,
+            glutes = scoreGlutes,
+            lowerback = scoreLowerBack
+        )) },
             colors = ButtonDefaults.buttonColors(visButtonColor1)){
             Spacer(Modifier.width(10.dp))
             BottomButtonText(
@@ -170,7 +223,24 @@ fun VisualizationBottomBar(visButtonColor1: Color, visButtonColor2: Color,
             )
             Spacer(Modifier.width(10.dp))
         }
-        Button(onClick = { navController.navigate(route = Screen.VisualizationBack.route) },
+        Button(onClick = { navController.navigate(route = Screen.VisualizationBack.passAllScores(
+            calves = scoreCalves,
+            thigh = scoreThigh,
+            hip_abductor = scoreHipAbductor,
+            abs = scoreAbs,
+            oblique = scoreOblique,
+            lats = scoreLats,
+            chest = scoreChest,
+            traps = scoreTraps,
+            neck = scoreNeck,
+            shoulder = scoreShoulders,
+            triceps = scoreTriceps,
+            biceps = scoreBiceps,
+            forearms = scoreForearms,
+            hamstrings = scoreHamstrings,
+            glutes = scoreGlutes,
+            lowerback = scoreLowerBack
+        )) },
             colors = ButtonDefaults.buttonColors(visButtonColor2)){
             Spacer(Modifier.width(10.dp))
             BottomButtonText(

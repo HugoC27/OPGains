@@ -9,43 +9,42 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.opgains.ui.theme.OPGainsTheme
 
 @Composable
-fun VisualizationBackScreen(navController: NavController, modifier: Modifier = Modifier) {
-    var scoreBackCalves = 1
-    var scoreBackHamstrings = 3
-    var scoreBackGlutes = 5
-    var scoreBackLowerback = 2
-    var scoreBackLats = 4
-    var scoreBackTrapezius = 3
-    var scoreBackNeck = 1
-    var scoreBackShoulders = 5
-    var scoreBackTricep = 1
-    var scoreBackForearm = 4
+fun VisualizationBackScreen(navController: NavController,
+                            modifier: Modifier = Modifier,
+                            scoreCalves: Int = 0,
+                            scoreThigh: Int = 0,
+                            scoreHipAbductor: Int = 0,
+                            scoreAbs: Int = 0,
+                            scoreOblique: Int = 0,
+                            scoreLats: Int = 0,
+                            scoreChest: Int = 0,
+                            scoreTraps: Int = 0,
+                            scoreNeck: Int = 0,
+                            scoreShoulders: Int = 0,
+                            scoreTriceps: Int = 0,
+                            scoreBiceps: Int = 0,
+                            scoreForearms: Int = 0,
+                            scoreHamstrings: Int = 0,
+                            scoreGlutes: Int = 0,
+                            scoreLowerBack: Int = 0) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
@@ -58,52 +57,52 @@ fun VisualizationBackScreen(navController: NavController, modifier: Modifier = M
         Image(
             painter = painterResource(R.drawable.back_calves),
             contentDescription = "back_calves",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackCalves)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreCalves)
         )
         Image(
             painter = painterResource(R.drawable.back_hamstring),
             contentDescription = "back_hamstring",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackHamstrings)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreHamstrings)
         )
         Image(
             painter = painterResource(R.drawable.back_glutes),
             contentDescription = "back_glutes",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackGlutes)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreGlutes)
         )
         Image(
             painter = painterResource(R.drawable.back_lowerback),
             contentDescription = "back_lowerback",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackLowerback)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreLowerBack)
         )
         Image(
             painter = painterResource(R.drawable.back_lats),
             contentDescription = "back_lats",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackLats)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreLats)
         )
         Image(
             painter = painterResource(R.drawable.back_trapezius),
             contentDescription = "back_trapezius",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackTrapezius)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreTraps)
         )
         Image(
             painter = painterResource(R.drawable.back_neck),
             contentDescription = "back_neck",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackNeck)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreNeck)
         )
         Image(
             painter = painterResource(R.drawable.back_shoulders),
             contentDescription = "back_shoulders",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackShoulders)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreShoulders)
         )
         Image(
             painter = painterResource(R.drawable.back_tricep),
             contentDescription = "back_triceps",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackTricep)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreTriceps)
         )
         Image(
             painter = painterResource(R.drawable.back_forearm),
             contentDescription = "back_forearm",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBackForearm)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreForearms)
         )
     }
     Box(
@@ -114,7 +113,23 @@ fun VisualizationBackScreen(navController: NavController, modifier: Modifier = M
         VisualizationBottomBar(
             navController = navController,
             visButtonColor1 = (Color(0xFF94A150)),
-            visButtonColor2 = (Color(0xFF6B7534))
+            visButtonColor2 = (Color(0xFF6B7534)),
+            scoreCalves = scoreCalves,
+            scoreThigh = scoreThigh,
+            scoreHipAbductor = scoreHipAbductor,
+            scoreAbs = scoreAbs,
+            scoreOblique = scoreOblique,
+            scoreLats = scoreLats,
+            scoreChest = scoreChest,
+            scoreTraps = scoreTraps,
+            scoreNeck = scoreNeck,
+            scoreShoulders = scoreShoulders,
+            scoreTriceps = scoreTriceps,
+            scoreBiceps = scoreBiceps,
+            scoreForearms = scoreForearms,
+            scoreHamstrings = scoreHamstrings,
+            scoreGlutes = scoreGlutes,
+            scoreLowerBack = scoreLowerBack
         )
     }
     Box(
