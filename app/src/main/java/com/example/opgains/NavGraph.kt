@@ -149,68 +149,69 @@ fun SetupNavGraph(
             arguments = listOf(
                 navArgument(ARGUMENT_CALVES) {
                         type = NavType.IntType
-                        defaultValue = 0 },
-            navArgument(ARGUMENT_THIGH) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_HIP_ABDUCTOR) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_ABS) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_OBLIQUE) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_LATS) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_CHEST) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_TRAPS) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_NECK) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_SHOULDER) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_TRICEPS) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_BICEPS) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_FOREARMS) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_HAMSTRINGS) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_GLUTES) {
-                type = NavType.IntType
-                defaultValue = 0
-            },
-            navArgument(ARGUMENT_LOWERBACK) {
-                type = NavType.IntType
-                defaultValue = 0
-            }
-        )
+                        defaultValue = 0
+                },
+                navArgument(ARGUMENT_THIGH) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_HIP_ABDUCTOR) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_ABS) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_OBLIQUE) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_LATS) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_CHEST) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_TRAPS) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_NECK) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_SHOULDER) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_TRICEPS) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_BICEPS) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_FOREARMS) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_HAMSTRINGS) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_GLUTES) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(ARGUMENT_LOWERBACK) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                }
+            )
         ) {
             VisualizationBackScreen(
                 navController = navController,

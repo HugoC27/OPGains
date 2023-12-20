@@ -98,7 +98,10 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
                 icon3 = Icons.Filled.Settings,
                 barButtonColor1 = (Color(0xFF94A150)),
                 barButtonColor2 = (Color(0xFF6B7534)),
-                barButtonColor3 = (Color(0xFF94A150))
+                barButtonColor3 = (Color(0xFF94A150)),
+                barButtonEnabled1 = true,
+                barButtonEnabled2 = false,
+                barButtonEnabled3 = true
             )
         }
     }
@@ -129,6 +132,7 @@ fun ButtonText(buttonTextStr: String, modifier: Modifier = Modifier){
 
 @Composable
 fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: Color,
+              barButtonEnabled1: Boolean, barButtonEnabled2: Boolean, barButtonEnabled3: Boolean,
               icon1: ImageVector, icon2: ImageVector, icon3: ImageVector,
               navController: NavController, modifier: Modifier = Modifier) {
     Row(
@@ -140,7 +144,8 @@ fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: C
             .height(64.dp)
     ) {
         Button(onClick = { navController.navigate(route = Screen.Contact.route) },
-            colors = ButtonDefaults.buttonColors(barButtonColor1)){
+            colors = ButtonDefaults.buttonColors(barButtonColor1),
+            enabled = barButtonEnabled1){
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon1,
@@ -149,7 +154,8 @@ fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: C
             Spacer(Modifier.width(10.dp))
         }
         Button(onClick = { navController.navigate(route = Screen.Home.route) },
-            colors = ButtonDefaults.buttonColors(barButtonColor2)){
+            colors = ButtonDefaults.buttonColors(barButtonColor2),
+            enabled = barButtonEnabled2){
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon2,
@@ -158,7 +164,8 @@ fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: C
             Spacer(Modifier.width(10.dp))
         }
         Button(onClick = { navController.navigate(route = Screen.Settings.route) },
-            colors = ButtonDefaults.buttonColors(barButtonColor3)){
+            colors = ButtonDefaults.buttonColors(barButtonColor3),
+            enabled = barButtonEnabled3){
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon3,

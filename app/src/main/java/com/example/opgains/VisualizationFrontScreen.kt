@@ -31,22 +31,22 @@ import androidx.compose.ui.graphics.ColorFilter
 @Composable
 fun VisualizationFrontScreen(navController: NavController,
                              modifier: Modifier = Modifier,
-                             scoreCalves: Int = 0,
-                             scoreThigh: Int = 0,
-                             scoreHipAbductor: Int = 0,
-                             scoreAbs: Int = 0,
-                             scoreOblique: Int = 0,
-                             scoreLats: Int = 0,
-                             scoreChest: Int = 0,
-                             scoreTraps: Int = 0,
-                             scoreNeck: Int = 0,
-                             scoreShoulders: Int = 0,
-                             scoreTriceps: Int = 0,
-                             scoreBiceps: Int = 0,
-                             scoreForearms: Int = 0,
-                             scoreHamstrings: Int = 0,
-                             scoreGlutes: Int = 0,
-                             scoreLowerBack: Int = 0) {
+                             scoreCalves: Int,
+                             scoreThigh: Int,
+                             scoreHipAbductor: Int,
+                             scoreAbs: Int,
+                             scoreOblique: Int,
+                             scoreLats: Int,
+                             scoreChest: Int,
+                             scoreTraps: Int,
+                             scoreNeck: Int,
+                             scoreShoulders: Int,
+                             scoreTriceps: Int,
+                             scoreBiceps: Int,
+                             scoreForearms: Int,
+                             scoreHamstrings: Int,
+                             scoreGlutes: Int,
+                             scoreLowerBack: Int) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
@@ -131,6 +131,8 @@ fun VisualizationFrontScreen(navController: NavController,
             navController = navController,
             visButtonColor1 = (Color(0xFF6B7534)),
             visButtonColor2 = (Color(0xFF94A150)),
+            visButtonEnabled1 = false,
+            visButtonEnabled2 = true,
             scoreCalves = scoreCalves,
             scoreThigh = scoreThigh,
             scoreHipAbductor = scoreHipAbductor,
@@ -173,6 +175,7 @@ fun ColorVariableChecker(muscleVariable: Int): ColorFilter? {
 
 @Composable
 fun VisualizationBottomBar(visButtonColor1: Color, visButtonColor2: Color,
+                           visButtonEnabled1: Boolean, visButtonEnabled2: Boolean,
                            navController: NavController, modifier: Modifier = Modifier,
                            scoreCalves: Int,
                            scoreThigh: Int,
@@ -216,7 +219,8 @@ fun VisualizationBottomBar(visButtonColor1: Color, visButtonColor2: Color,
             glutes = scoreGlutes,
             lowerback = scoreLowerBack
         )) },
-            colors = ButtonDefaults.buttonColors(visButtonColor1)){
+            colors = ButtonDefaults.buttonColors(visButtonColor1),
+            enabled = visButtonEnabled1){
             Spacer(Modifier.width(10.dp))
             BottomButtonText(
                 buttonTextStr = "Front"
@@ -241,7 +245,8 @@ fun VisualizationBottomBar(visButtonColor1: Color, visButtonColor2: Color,
             glutes = scoreGlutes,
             lowerback = scoreLowerBack
         )) },
-            colors = ButtonDefaults.buttonColors(visButtonColor2)){
+            colors = ButtonDefaults.buttonColors(visButtonColor2),
+            enabled = visButtonEnabled2){
             Spacer(Modifier.width(10.dp))
             BottomButtonText(
                 buttonTextStr = "Back"
@@ -268,6 +273,22 @@ fun VisualizationFrontPreview() {
     OPGainsTheme {
         VisualizationFrontScreen(
             navController = rememberNavController(),
+            scoreCalves = 2,
+            scoreThigh = 1,
+            scoreHipAbductor = 0,
+            scoreAbs = 3,
+            scoreOblique = 3,
+            scoreLats = 1,
+            scoreChest = 5,
+            scoreTraps = 0,
+            scoreNeck = 3,
+            scoreShoulders = 1,
+            scoreTriceps = 3,
+            scoreBiceps = 1,
+            scoreForearms = 4,
+            scoreHamstrings = 5,
+            scoreGlutes = 0,
+            scoreLowerBack = 4
         )
     }
 }

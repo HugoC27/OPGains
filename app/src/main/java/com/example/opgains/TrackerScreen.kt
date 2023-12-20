@@ -57,6 +57,22 @@ import androidx.compose.runtime.*
 
 import androidx.compose.ui.text.input.KeyboardType
 
+var scoreCalves = 2
+var scoreThigh = 1
+var scoreHipAbductor = 0
+var scoreAbs = 3
+var scoreOblique = 3
+var scoreLats = 1
+var scoreChest = 5
+var scoreTraps = 0
+var scoreNeck = 3
+var scoreShoulders = 1
+var scoreTriceps = 3
+var scoreBiceps = 1
+var scoreForearms = 4
+var scoreHamstrings = 5
+var scoreGlutes = 0
+var scoreLowerBack = 4
 
 @Composable
 fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
@@ -211,25 +227,24 @@ fun TrackerTopBar( navController: NavController, modifier: Modifier = Modifier, 
             .fillMaxWidth()
             .height(54.dp)
     ) {
-
         Button(
             onClick = { navController.navigate(route = Screen.VisualizationFront.passAllScores(
-                calves = 2,
-                thigh = 3,
-                hip_abductor = 1,
-                abs = 5,
-                oblique = 1,
-                lats = 4,
-                chest = 5,
-                traps = 2,
-                neck = 4,
-                shoulder = 2,
-                triceps = 1,
-                biceps = 5,
-                forearms = 4,
-                hamstrings = 3,
-                glutes = 2,
-                lowerback = 3
+                calves = scoreCalves,
+                thigh = scoreThigh,
+                hip_abductor = scoreHipAbductor,
+                abs = scoreAbs,
+                oblique = scoreOblique,
+                lats = scoreLats,
+                chest = scoreChest,
+                traps = scoreTraps,
+                neck = scoreNeck,
+                shoulder = scoreShoulders,
+                triceps = scoreTriceps,
+                biceps = scoreBiceps,
+                forearms = scoreForearms,
+                hamstrings = scoreHamstrings,
+                glutes = scoreGlutes,
+                lowerback = scoreLowerBack
             )) },
             colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
         ) {

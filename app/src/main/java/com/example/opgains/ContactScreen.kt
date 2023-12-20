@@ -85,7 +85,10 @@ fun ContactScreen(navController: NavController, modifier: Modifier = Modifier) {
             icon3 = Icons.Filled.Settings,
             barButtonColor1 = (Color(0xFF6B7534)),
             barButtonColor2 = (Color(0xFF94A150)),
-            barButtonColor3 = (Color(0xFF94A150))
+            barButtonColor3 = (Color(0xFF94A150)),
+            barButtonEnabled1 = false,
+            barButtonEnabled2 = true,
+            barButtonEnabled3 = true
         )
     }
 }

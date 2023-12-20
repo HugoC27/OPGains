@@ -41,22 +41,22 @@ sealed class Screen(val route: String) {
             "lowerback={lowerback}"
     ) {
         fun passAllScores(
-            calves: Int = 0,
-            thigh: Int = 0,
-            hip_abductor: Int = 0,
-            abs: Int = 0,
-            oblique: Int = 0,
-            lats: Int = 0,
-            chest: Int = 0,
-            traps: Int = 0,
-            neck: Int = 0,
-            shoulder: Int = 0,
-            triceps: Int = 0,
-            biceps: Int = 0,
-            forearms: Int = 0,
-            hamstrings: Int = 0,
-            glutes: Int = 0,
-            lowerback: Int = 0
+            calves: Int,
+            thigh: Int,
+            hip_abductor: Int,
+            abs: Int,
+            oblique: Int,
+            lats: Int,
+            chest: Int,
+            traps: Int,
+            neck: Int,
+            shoulder: Int,
+            triceps: Int,
+            biceps: Int,
+            forearms: Int,
+            hamstrings: Int,
+            glutes: Int,
+            lowerback: Int
         ): String {
             return "visualization_front_screen?" +
                     "calves=$calves&" +
@@ -96,22 +96,22 @@ sealed class Screen(val route: String) {
             "lowerback={lowerback}"
     ) {
         fun passAllScores(
-            calves: Int = 0,
-            thigh: Int = 0,
-            hip_abductor: Int = 0,
-            abs: Int = 0,
-            oblique: Int = 0,
-            lats: Int = 0,
-            chest: Int = 0,
-            traps: Int = 0,
-            neck: Int = 0,
-            shoulder: Int = 0,
-            triceps: Int = 0,
-            biceps: Int = 0,
-            forearms: Int = 0,
-            hamstrings: Int = 0,
-            glutes: Int = 0,
-            lowerback: Int = 0
+            calves: Int,
+            thigh: Int,
+            hip_abductor: Int,
+            abs: Int,
+            oblique: Int,
+            lats: Int,
+            chest: Int,
+            traps: Int,
+            neck: Int,
+            shoulder: Int,
+            triceps: Int,
+            biceps: Int,
+            forearms: Int,
+            hamstrings: Int,
+            glutes: Int,
+            lowerback: Int
         ): String {
             return "visualization_back_screen?" +
                     "calves=$calves&" +
