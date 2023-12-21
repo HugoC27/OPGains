@@ -17,9 +17,9 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Color(0xFF4B5320),
+    secondary = Color(0xFF66712F),
+    tertiary = Color(0xFF808B4C)
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -58,7 +58,8 @@ fun OPGainsTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = Color(0xFF4B5320).toArgb()
+            window.navigationBarColor = Color(0xFF4B5320).toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }

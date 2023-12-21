@@ -57,22 +57,22 @@ import androidx.compose.runtime.*
 
 import androidx.compose.ui.text.input.KeyboardType
 
-var scoreCalves = 2
-var scoreThigh = 1
-var scoreHipAbductor = 0
-var scoreAbs = 3
-var scoreOblique = 3
-var scoreLats = 1
-var scoreChest = 5
-var scoreTraps = 0
-var scoreNeck = 3
-var scoreShoulders = 1
-var scoreTriceps = 3
-var scoreBiceps = 1
-var scoreForearms = 4
-var scoreHamstrings = 5
-var scoreGlutes = 0
-var scoreLowerBack = 4
+var scoreCalves = (0..5).random()
+var scoreThigh = (0..5).random()
+var scoreHipAbductor = (0..5).random()
+var scoreAbs = (0..5).random()
+var scoreOblique = (0..5).random()
+var scoreLats = (0..5).random()
+var scoreChest = (0..5).random()
+var scoreTraps = (0..5).random()
+var scoreNeck = (0..5).random()
+var scoreShoulders = (0..5).random()
+var scoreTriceps = (0..5).random()
+var scoreBiceps = (0..5).random()
+var scoreForearms = (0..5).random()
+var scoreHamstrings = (0..5).random()
+var scoreGlutes = (0..5).random()
+var scoreLowerBack = (0..5).random()
 
 @Composable
 fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
