@@ -55,7 +55,7 @@ fun ContactScreen(navController: NavController, modifier: Modifier = Modifier) {
             )
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
-            ){
+            ) {
                 Image(
                     painter = appLogo,
                     contentDescription = null,
@@ -77,7 +77,7 @@ fun ContactScreen(navController: NavController, modifier: Modifier = Modifier) {
         contentAlignment = Alignment.BottomStart,
         modifier = modifier
             .fillMaxSize()
-    ){
+    ) {
         BottomBar(
             navController = navController,
             icon1 = Icons.Filled.Phone,

@@ -18,27 +18,28 @@ const val ARGUMENT_GLUTES = "glutes"
 const val ARGUMENT_LOWERBACK = "lowerback"
 
 sealed class Screen(val route: String) {
-    object Home: Screen(route = "home_screen")
-    object Tracker: Screen(route = "tracker_screen")
-    object Contact: Screen(route = "contact_screen")
-    object Settings: Screen(route = "settings_screen")
-    object VisualizationFront: Screen(route = "visualization_front_screen?" +
-            "calves={calves}&" +
-            "thigh={thigh}&" +
-            "hip_abductor={hip_abductor}&" +
-            "abs={abs}&" +
-            "oblique={oblique}&" +
-            "lats={lats}&" +
-            "chest={chest}&" +
-            "traps={traps}&" +
-            "neck={neck}&" +
-            "shoulder={shoulder}&" +
-            "triceps={triceps}&" +
-            "biceps={biceps}&" +
-            "forearms={forearms}&" +
-            "hamstrings={hamstrings}&" +
-            "glutes={glutes}&" +
-            "lowerback={lowerback}"
+    object Home : Screen(route = "home_screen")
+    object Tracker : Screen(route = "tracker_screen")
+    object Contact : Screen(route = "contact_screen")
+    object Settings : Screen(route = "settings_screen")
+    object VisualizationFront : Screen(
+        route = "visualization_front_screen?" +
+                "calves={calves}&" +
+                "thigh={thigh}&" +
+                "hip_abductor={hip_abductor}&" +
+                "abs={abs}&" +
+                "oblique={oblique}&" +
+                "lats={lats}&" +
+                "chest={chest}&" +
+                "traps={traps}&" +
+                "neck={neck}&" +
+                "shoulder={shoulder}&" +
+                "triceps={triceps}&" +
+                "biceps={biceps}&" +
+                "forearms={forearms}&" +
+                "hamstrings={hamstrings}&" +
+                "glutes={glutes}&" +
+                "lowerback={lowerback}"
     ) {
         fun passAllScores(
             calves: Int,
@@ -77,23 +78,25 @@ sealed class Screen(val route: String) {
                     "lowerback=$lowerback"
         }
     }
-    object VisualizationBack: Screen(route = "visualization_back_screen?" +
-            "calves={calves}&" +
-            "thigh={thigh}&" +
-            "hip_abductor={hip_abductor}&" +
-            "abs={abs}&" +
-            "oblique={oblique}&" +
-            "lats={lats}&" +
-            "chest={chest}&" +
-            "traps={traps}&" +
-            "neck={neck}&" +
-            "shoulder={shoulder}&" +
-            "triceps={triceps}&" +
-            "biceps={biceps}&" +
-            "forearms={forearms}&" +
-            "hamstrings={hamstrings}&" +
-            "glutes={glutes}&" +
-            "lowerback={lowerback}"
+
+    object VisualizationBack : Screen(
+        route = "visualization_back_screen?" +
+                "calves={calves}&" +
+                "thigh={thigh}&" +
+                "hip_abductor={hip_abductor}&" +
+                "abs={abs}&" +
+                "oblique={oblique}&" +
+                "lats={lats}&" +
+                "chest={chest}&" +
+                "traps={traps}&" +
+                "neck={neck}&" +
+                "shoulder={shoulder}&" +
+                "triceps={triceps}&" +
+                "biceps={biceps}&" +
+                "forearms={forearms}&" +
+                "hamstrings={hamstrings}&" +
+                "glutes={glutes}&" +
+                "lowerback={lowerback}"
     ) {
         fun passAllScores(
             calves: Int,
@@ -132,5 +135,6 @@ sealed class Screen(val route: String) {
                     "lowerback=$lowerback"
         }
     }
-    object Exercise: Screen(route = "exercise_screen")
+
+    object Exercise : Screen(route = "exercise_screen")
 }

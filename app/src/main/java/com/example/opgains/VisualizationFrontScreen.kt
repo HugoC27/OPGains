@@ -29,24 +29,26 @@ import com.example.opgains.ui.theme.OPGainsTheme
 import androidx.compose.ui.graphics.ColorFilter
 
 @Composable
-fun VisualizationFrontScreen(navController: NavController,
-                             modifier: Modifier = Modifier,
-                             scoreCalves: Int,
-                             scoreThigh: Int,
-                             scoreHipAbductor: Int,
-                             scoreAbs: Int,
-                             scoreOblique: Int,
-                             scoreLats: Int,
-                             scoreChest: Int,
-                             scoreTraps: Int,
-                             scoreNeck: Int,
-                             scoreShoulders: Int,
-                             scoreTriceps: Int,
-                             scoreBiceps: Int,
-                             scoreForearms: Int,
-                             scoreHamstrings: Int,
-                             scoreGlutes: Int,
-                             scoreLowerBack: Int) {
+fun VisualizationFrontScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    scoreCalves: Int,
+    scoreThigh: Int,
+    scoreHipAbductor: Int,
+    scoreAbs: Int,
+    scoreOblique: Int,
+    scoreLats: Int,
+    scoreChest: Int,
+    scoreTraps: Int,
+    scoreNeck: Int,
+    scoreShoulders: Int,
+    scoreTriceps: Int,
+    scoreBiceps: Int,
+    scoreForearms: Int,
+    scoreHamstrings: Int,
+    scoreGlutes: Int,
+    scoreLowerBack: Int
+) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
@@ -126,7 +128,7 @@ fun VisualizationFrontScreen(navController: NavController,
         contentAlignment = Alignment.BottomStart,
         modifier = modifier
             .fillMaxSize()
-    ){
+    ) {
         VisualizationBottomBar(
             navController = navController,
             visButtonColor1 = (Color(0xFF6B7534)),
@@ -174,25 +176,27 @@ fun ColorVariableChecker(muscleVariable: Int): ColorFilter? {
 }
 
 @Composable
-fun VisualizationBottomBar(visButtonColor1: Color, visButtonColor2: Color,
-                           visButtonEnabled1: Boolean, visButtonEnabled2: Boolean,
-                           navController: NavController, modifier: Modifier = Modifier,
-                           scoreCalves: Int,
-                           scoreThigh: Int,
-                           scoreHipAbductor: Int,
-                           scoreAbs: Int,
-                           scoreOblique: Int,
-                           scoreLats: Int,
-                           scoreChest: Int,
-                           scoreTraps: Int,
-                           scoreNeck: Int,
-                           scoreShoulders: Int,
-                           scoreTriceps: Int,
-                           scoreBiceps: Int,
-                           scoreForearms: Int,
-                           scoreHamstrings: Int,
-                           scoreGlutes: Int,
-                           scoreLowerBack: Int) {
+fun VisualizationBottomBar(
+    visButtonColor1: Color, visButtonColor2: Color,
+    visButtonEnabled1: Boolean, visButtonEnabled2: Boolean,
+    navController: NavController, modifier: Modifier = Modifier,
+    scoreCalves: Int,
+    scoreThigh: Int,
+    scoreHipAbductor: Int,
+    scoreAbs: Int,
+    scoreOblique: Int,
+    scoreLats: Int,
+    scoreChest: Int,
+    scoreTraps: Int,
+    scoreNeck: Int,
+    scoreShoulders: Int,
+    scoreTriceps: Int,
+    scoreBiceps: Int,
+    scoreForearms: Int,
+    scoreHamstrings: Int,
+    scoreGlutes: Int,
+    scoreLowerBack: Int
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
@@ -201,52 +205,64 @@ fun VisualizationBottomBar(visButtonColor1: Color, visButtonColor2: Color,
             .fillMaxWidth()
             .height(64.dp)
     ) {
-        Button(onClick = { navController.navigate(route = Screen.VisualizationFront.passAllScores(
-            calves = scoreCalves,
-            thigh = scoreThigh,
-            hip_abductor = scoreHipAbductor,
-            abs = scoreAbs,
-            oblique = scoreOblique,
-            lats = scoreLats,
-            chest = scoreChest,
-            traps = scoreTraps,
-            neck = scoreNeck,
-            shoulder = scoreShoulders,
-            triceps = scoreTriceps,
-            biceps = scoreBiceps,
-            forearms = scoreForearms,
-            hamstrings = scoreHamstrings,
-            glutes = scoreGlutes,
-            lowerback = scoreLowerBack
-        )) },
+        Button(
+            onClick = {
+                navController.navigate(
+                    route = Screen.VisualizationFront.passAllScores(
+                        calves = scoreCalves,
+                        thigh = scoreThigh,
+                        hip_abductor = scoreHipAbductor,
+                        abs = scoreAbs,
+                        oblique = scoreOblique,
+                        lats = scoreLats,
+                        chest = scoreChest,
+                        traps = scoreTraps,
+                        neck = scoreNeck,
+                        shoulder = scoreShoulders,
+                        triceps = scoreTriceps,
+                        biceps = scoreBiceps,
+                        forearms = scoreForearms,
+                        hamstrings = scoreHamstrings,
+                        glutes = scoreGlutes,
+                        lowerback = scoreLowerBack
+                    )
+                )
+            },
             colors = ButtonDefaults.buttonColors(visButtonColor1),
-            enabled = visButtonEnabled1){
+            enabled = visButtonEnabled1
+        ) {
             Spacer(Modifier.width(10.dp))
             BottomButtonText(
                 buttonTextStr = "Front"
             )
             Spacer(Modifier.width(10.dp))
         }
-        Button(onClick = { navController.navigate(route = Screen.VisualizationBack.passAllScores(
-            calves = scoreCalves,
-            thigh = scoreThigh,
-            hip_abductor = scoreHipAbductor,
-            abs = scoreAbs,
-            oblique = scoreOblique,
-            lats = scoreLats,
-            chest = scoreChest,
-            traps = scoreTraps,
-            neck = scoreNeck,
-            shoulder = scoreShoulders,
-            triceps = scoreTriceps,
-            biceps = scoreBiceps,
-            forearms = scoreForearms,
-            hamstrings = scoreHamstrings,
-            glutes = scoreGlutes,
-            lowerback = scoreLowerBack
-        )) },
+        Button(
+            onClick = {
+                navController.navigate(
+                    route = Screen.VisualizationBack.passAllScores(
+                        calves = scoreCalves,
+                        thigh = scoreThigh,
+                        hip_abductor = scoreHipAbductor,
+                        abs = scoreAbs,
+                        oblique = scoreOblique,
+                        lats = scoreLats,
+                        chest = scoreChest,
+                        traps = scoreTraps,
+                        neck = scoreNeck,
+                        shoulder = scoreShoulders,
+                        triceps = scoreTriceps,
+                        biceps = scoreBiceps,
+                        forearms = scoreForearms,
+                        hamstrings = scoreHamstrings,
+                        glutes = scoreGlutes,
+                        lowerback = scoreLowerBack
+                    )
+                )
+            },
             colors = ButtonDefaults.buttonColors(visButtonColor2),
-            enabled = visButtonEnabled2){
+            enabled = visButtonEnabled2
+        ) {
             Spacer(Modifier.width(10.dp))
             BottomButtonText(
                 buttonTextStr = "Back"
@@ -257,7 +273,11 @@ fun VisualizationBottomBar(visButtonColor1: Color, visButtonColor2: Color,
 }
 
 @Composable
-fun BottomButtonText(buttonTextStr: String, fontSize: TextUnit = 16.sp, modifier: Modifier = Modifier) {
+fun BottomButtonText(
+    buttonTextStr: String,
+    fontSize: TextUnit = 16.sp,
+    modifier: Modifier = Modifier
+) {
     Text(
         text = buttonTextStr,
         textAlign = TextAlign.Center,

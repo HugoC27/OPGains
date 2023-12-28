@@ -75,9 +75,11 @@ var scoreGlutes = (0..5).random()
 var scoreLowerBack = (0..5).random()
 
 @Composable
-fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
-                  trackerButtonText: String, workoutExercises:Int) {
-        var amount by remember { mutableIntStateOf(workoutExercises) }
+fun TrackerScreen(
+    navController: NavController, modifier: Modifier = Modifier,
+    trackerButtonText: String, workoutExercises: Int
+) {
+    var amount by remember { mutableIntStateOf(workoutExercises) }
     val camoBackground = painterResource(R.drawable.camo_background)
 
     Image(
@@ -92,9 +94,11 @@ fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
     )
 
     @Composable
-    fun TrackerBottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: Color,
-                         icon1: ImageVector, icon3: ImageVector,
-                         navController: NavController, modifier: Modifier = Modifier,) {
+    fun TrackerBottomBar(
+        barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: Color,
+        icon1: ImageVector, icon3: ImageVector,
+        navController: NavController, modifier: Modifier = Modifier,
+    ) {
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically,
@@ -116,7 +120,7 @@ fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
             }
 
             Button(
-                onClick = { amount++},
+                onClick = { amount++ },
                 colors = ButtonDefaults.buttonColors(barButtonColor2)
             ) {
                 Spacer(Modifier.width(10.dp))
@@ -126,8 +130,10 @@ fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
                 Spacer(Modifier.width(10.dp))
             }
 
-            Button(onClick = { navController.navigate(route = Screen.Home.route) },
-                colors = ButtonDefaults.buttonColors(barButtonColor3)){
+            Button(
+                onClick = { navController.navigate(route = Screen.Home.route) },
+                colors = ButtonDefaults.buttonColors(barButtonColor3)
+            ) {
                 Spacer(Modifier.width(10.dp))
                 Icon(
                     imageVector = icon3,
@@ -175,18 +181,18 @@ fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
             trackerButtonText2 = trackerButtonText
         )
     }
-    Column (
-        modifier=modifier
+    Column(
+        modifier = modifier
             .fillMaxSize()
 
-    ){
-        Column (
-            modifier= modifier
+    ) {
+        Column(
+            modifier = modifier
                 .fillMaxSize()
                 .padding(16.dp)
                 .padding(top = 60.dp)
                 .padding(bottom = 60.dp)
-        ){
+        ) {
             ScrollableList(
                 onAddSet = { sets, reps, weight ->
 
@@ -200,7 +206,11 @@ fun TrackerScreen(navController: NavController, modifier: Modifier = Modifier,
 }
 
 @Composable
-fun TrackerTopBar( navController: NavController, modifier: Modifier = Modifier, trackerButtonText2: String ) {
+fun TrackerTopBar(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    trackerButtonText2: String
+) {
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
@@ -228,29 +238,34 @@ fun TrackerTopBar( navController: NavController, modifier: Modifier = Modifier, 
             .height(54.dp)
     ) {
         Button(
-            onClick = { navController.navigate(route = Screen.VisualizationFront.passAllScores(
-                calves = scoreCalves,
-                thigh = scoreThigh,
-                hip_abductor = scoreHipAbductor,
-                abs = scoreAbs,
-                oblique = scoreOblique,
-                lats = scoreLats,
-                chest = scoreChest,
-                traps = scoreTraps,
-                neck = scoreNeck,
-                shoulder = scoreShoulders,
-                triceps = scoreTriceps,
-                biceps = scoreBiceps,
-                forearms = scoreForearms,
-                hamstrings = scoreHamstrings,
-                glutes = scoreGlutes,
-                lowerback = scoreLowerBack
-            )) },
+            onClick = {
+                navController.navigate(
+                    route = Screen.VisualizationFront.passAllScores(
+                        calves = scoreCalves,
+                        thigh = scoreThigh,
+                        hip_abductor = scoreHipAbductor,
+                        abs = scoreAbs,
+                        oblique = scoreOblique,
+                        lats = scoreLats,
+                        chest = scoreChest,
+                        traps = scoreTraps,
+                        neck = scoreNeck,
+                        shoulder = scoreShoulders,
+                        triceps = scoreTriceps,
+                        biceps = scoreBiceps,
+                        forearms = scoreForearms,
+                        hamstrings = scoreHamstrings,
+                        glutes = scoreGlutes,
+                        lowerback = scoreLowerBack
+                    )
+                )
+            },
             colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
         ) {
             TrackerButtonText(
                 buttonTextStr = trackerButtonText2,
-            ) }
+            )
+        }
         Spacer(Modifier.width(20.dp))
     }
 }
@@ -265,10 +280,6 @@ fun TrackerButtonText(buttonTextStr: String, modifier: Modifier = Modifier) {
         modifier = modifier
     )
 }
-
-
-
-
 
 
 @Composable
@@ -286,9 +297,11 @@ fun ListItem(name: String, onAddSet: (sets: Int, reps: Int, weight: Float) -> Un
         color = (Color(0xFFFFFFFF)),
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
-        Column(modifier = Modifier
-            .padding(24.dp)
-            .fillMaxWidth()) {
+        Column(
+            modifier = Modifier
+                .padding(24.dp)
+                .fillMaxWidth()
+        ) {
 
             Row {
                 Column(
@@ -390,7 +403,7 @@ fun SetRow(setData: SetData, onValuesChanged: (Int, Float) -> Unit) {
             },
             label = { Text("Reps") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-            modifier= Modifier
+            modifier = Modifier
                 .width(100.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
@@ -401,17 +414,13 @@ fun SetRow(setData: SetData, onValuesChanged: (Int, Float) -> Unit) {
             },
             label = { Text("Weight") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-            modifier= Modifier
+            modifier = Modifier
                 .width(100.dp)
         )
     }
 }
 
 data class SetData(val setNumber: Int, val reps: Int, val weight: Float)
-
-
-
-
 
 
 @Preview(showBackground = true)
@@ -424,7 +433,7 @@ fun DetailPreview() {
         TrackerScreen(
             navController = rememberNavController(),
             trackerButtonText = "Visualize",
-            workoutExercises=0
+            workoutExercises = 0
         )
     }
 }

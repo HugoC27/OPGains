@@ -37,7 +37,12 @@ import com.example.opgains.ui.theme.OPGainsTheme
 import androidx.compose.material.icons.filled.Settings
 
 @Composable
-fun HomeScreen(title: String, buttonText: String, navController: NavController, modifier: Modifier = Modifier) {
+fun HomeScreen(
+    title: String,
+    buttonText: String,
+    navController: NavController,
+    modifier: Modifier = Modifier
+) {
     val appLogo = painterResource(R.drawable.opgainsround)
     val buttonColor = ButtonDefaults.buttonColors(Color(0xFF4B5320))
     val camoBackground = painterResource(R.drawable.camo_background)
@@ -46,7 +51,7 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFA4B25C))
-    ){
+    ) {
         Image(
             painter = camoBackground,
             contentDescription = "Background",
@@ -57,7 +62,7 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
         )
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             Image(
                 painter = appLogo,
                 contentDescription = null,
@@ -69,14 +74,16 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
             TitleText(
                 titleStr = title,
                 modifier = modifier
-                    .padding(top = 10.dp,bottom = 10.dp)
+                    .padding(top = 10.dp, bottom = 10.dp)
             )
             Spacer(
                 modifier = modifier
                     .height(90.dp)
             )
-            Button(onClick = { navController.navigate(route = Screen.Tracker.route) },
-                colors = buttonColor){
+            Button(
+                onClick = { navController.navigate(route = Screen.Tracker.route) },
+                colors = buttonColor
+            ) {
                 ButtonText(
                     buttonTextStr = buttonText,
                 )
@@ -90,7 +97,7 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
             contentAlignment = Alignment.BottomStart,
             modifier = modifier
                 .fillMaxSize()
-        ){
+        ) {
             BottomBar(
                 navController = navController,
                 icon1 = Icons.Filled.Phone,
@@ -108,7 +115,7 @@ fun HomeScreen(title: String, buttonText: String, navController: NavController, 
 }
 
 @Composable
-fun TitleText(titleStr: String, modifier: Modifier = Modifier){
+fun TitleText(titleStr: String, modifier: Modifier = Modifier) {
     Text(
         text = titleStr,
         textAlign = TextAlign.Center,
@@ -120,7 +127,7 @@ fun TitleText(titleStr: String, modifier: Modifier = Modifier){
 }
 
 @Composable
-fun ButtonText(buttonTextStr: String, modifier: Modifier = Modifier){
+fun ButtonText(buttonTextStr: String, modifier: Modifier = Modifier) {
     Text(
         text = buttonTextStr,
         textAlign = TextAlign.Center,
@@ -131,10 +138,12 @@ fun ButtonText(buttonTextStr: String, modifier: Modifier = Modifier){
 }
 
 @Composable
-fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: Color,
-              barButtonEnabled1: Boolean, barButtonEnabled2: Boolean, barButtonEnabled3: Boolean,
-              icon1: ImageVector, icon2: ImageVector, icon3: ImageVector,
-              navController: NavController, modifier: Modifier = Modifier) {
+fun BottomBar(
+    barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: Color,
+    barButtonEnabled1: Boolean, barButtonEnabled2: Boolean, barButtonEnabled3: Boolean,
+    icon1: ImageVector, icon2: ImageVector, icon3: ImageVector,
+    navController: NavController, modifier: Modifier = Modifier
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
@@ -143,9 +152,11 @@ fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: C
             .fillMaxWidth()
             .height(64.dp)
     ) {
-        Button(onClick = { navController.navigate(route = Screen.Contact.route) },
+        Button(
+            onClick = { navController.navigate(route = Screen.Contact.route) },
             colors = ButtonDefaults.buttonColors(barButtonColor1),
-            enabled = barButtonEnabled1){
+            enabled = barButtonEnabled1
+        ) {
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon1,
@@ -153,9 +164,11 @@ fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: C
             )
             Spacer(Modifier.width(10.dp))
         }
-        Button(onClick = { navController.navigate(route = Screen.Home.route) },
+        Button(
+            onClick = { navController.navigate(route = Screen.Home.route) },
             colors = ButtonDefaults.buttonColors(barButtonColor2),
-            enabled = barButtonEnabled2){
+            enabled = barButtonEnabled2
+        ) {
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon2,
@@ -163,9 +176,11 @@ fun BottomBar(barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: C
             )
             Spacer(Modifier.width(10.dp))
         }
-        Button(onClick = { navController.navigate(route = Screen.Settings.route) },
+        Button(
+            onClick = { navController.navigate(route = Screen.Settings.route) },
             colors = ButtonDefaults.buttonColors(barButtonColor3),
-            enabled = barButtonEnabled3){
+            enabled = barButtonEnabled3
+        ) {
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon3,

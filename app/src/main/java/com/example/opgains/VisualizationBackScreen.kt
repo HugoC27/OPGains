@@ -27,24 +27,26 @@ import androidx.navigation.compose.rememberNavController
 import com.example.opgains.ui.theme.OPGainsTheme
 
 @Composable
-fun VisualizationBackScreen(navController: NavController,
-                            modifier: Modifier = Modifier,
-                            scoreCalves: Int,
-                            scoreThigh: Int,
-                            scoreHipAbductor: Int,
-                            scoreAbs: Int,
-                            scoreOblique: Int,
-                            scoreLats: Int,
-                            scoreChest: Int,
-                            scoreTraps: Int,
-                            scoreNeck: Int,
-                            scoreShoulders: Int,
-                            scoreTriceps: Int,
-                            scoreBiceps: Int,
-                            scoreForearms: Int,
-                            scoreHamstrings: Int,
-                            scoreGlutes: Int,
-                            scoreLowerBack: Int) {
+fun VisualizationBackScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    scoreCalves: Int,
+    scoreThigh: Int,
+    scoreHipAbductor: Int,
+    scoreAbs: Int,
+    scoreOblique: Int,
+    scoreLats: Int,
+    scoreChest: Int,
+    scoreTraps: Int,
+    scoreNeck: Int,
+    scoreShoulders: Int,
+    scoreTriceps: Int,
+    scoreBiceps: Int,
+    scoreForearms: Int,
+    scoreHamstrings: Int,
+    scoreGlutes: Int,
+    scoreLowerBack: Int
+) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
@@ -109,7 +111,7 @@ fun VisualizationBackScreen(navController: NavController,
         contentAlignment = Alignment.BottomStart,
         modifier = modifier
             .fillMaxSize()
-    ){
+    ) {
         VisualizationBottomBar(
             navController = navController,
             visButtonColor1 = (Color(0xFF94A150)),
@@ -154,7 +156,8 @@ fun VisualizationTopBar(navController: NavController, modifier: Modifier = Modif
             .height(54.dp)
     ) {
         Spacer(Modifier.width(20.dp))
-        Button(onClick = { navController.navigate(route = Screen.Tracker.route) },
+        Button(
+            onClick = { navController.navigate(route = Screen.Tracker.route) },
             colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
         ) {
             Icon(

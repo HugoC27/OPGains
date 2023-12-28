@@ -22,7 +22,7 @@ fun SetupNavGraph(
         exitTransition = {
             ExitTransition.None
         }
-    ){
+    ) {
         composable(
             route = Screen.Home.route,
         ) {
@@ -36,9 +36,9 @@ fun SetupNavGraph(
             route = Screen.Tracker.route,
         ) {
             TrackerScreen(
-                trackerButtonText="Visualize",
+                trackerButtonText = "Visualize",
                 navController = navController,
-                workoutExercises=0
+                workoutExercises = 0
             )
         }
         composable(
@@ -148,8 +148,8 @@ fun SetupNavGraph(
             route = Screen.VisualizationBack.route,
             arguments = listOf(
                 navArgument(ARGUMENT_CALVES) {
-                        type = NavType.IntType
-                        defaultValue = 0
+                    type = NavType.IntType
+                    defaultValue = 0
                 },
                 navArgument(ARGUMENT_THIGH) {
                     type = NavType.IntType
