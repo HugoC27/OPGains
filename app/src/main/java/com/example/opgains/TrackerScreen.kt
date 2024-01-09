@@ -293,8 +293,10 @@ fun ListItem(name: String, onAddSet: (sets: Int, reps: Int, weight: Float) -> Un
         ), label = ""
     )
 
-    Surface(
-        color = (Color(0xFFFFFFFF)),
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        ),
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
         Column(

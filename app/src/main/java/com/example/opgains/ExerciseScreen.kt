@@ -3,13 +3,14 @@ package com.example.opgains
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -30,104 +31,109 @@ import com.example.opgains.ui.theme.OPGainsTheme
 @Composable
 fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) {
     val camoBackground = painterResource(R.drawable.camo_background)
-    var list = listOf<String>(
+    var shoulderExercises = listOf<String>(
         "Arnold Press",
-        "Assisted Dip",
-        "Assisted Pullups",
-        "Back Extension",
-        "Barbell Benchpress",
-        "Barbell Calf Raise",
-        "Barbell Curl",
-        "Barbell Good Morning",
-        "Barbell JM Press",
-        "Barbell Hip Thrust",
-        "Barbell Preacher Curl",
-        "Barbell Reverse Curl",
-        "Barbell Romanian Deadlift",
-        "Barbell Row",
         "Barbell Shoudler Press",
-        "Barbell Shrugs",
-        "Barbell Skullcrusher",
-        "Barbell Squat",
-        "Barbell Triceps Extension",
         "Barbell Upright Row",
-        "Cable Curl",
         "Cable Face Pulls",
-        "Cable Fly",
         "Cable Front Raises",
-        "Cable Hammer Curl",
         "Cable Rear Delt Fly",
-        "Cable Reverse Wrist Curl",
-        "Cable Shrugs",
         "Cable Side Lateral Raise",
+        "Dumbbell Front Raises",
+        "Dumbbell Rear Delt Fly",
+        "Dumbbell Shoulder Press",
+        "Dumbbell Side Lateral Raise",
+        "Machine Shoulder Press",
+        "Machine Side Lateral Raise",
+        "Reverse Peck Deck Fly"
+    )
+    var tricepsExercises = listOf<String>(
+        "Barbell JM Press",
+        "Barbell Skullcrusher",
+        "Barbell Triceps Extension",
         "Cable Triceps Extension",
         "Cable Triceps Pushdown",
-        "Cable Wrist Curl",
-        "Deadlift",
-        "Dip",
-        "Dumbbell Benchpress",
-        "Dumbbell Bulgarian Split Squats",
-        "Dumbbell Concentration Curl",
-        "Dumbbell Curl",
-        "Dumbbell Fly",
-        "Dumbbell Front Raises",
-        "Dumbbell Hammer Curl",
-        "Dumbbell Preacher Curl",
-        "Dumbbell Rear Delt Fly",
-        "Dumbbell Reverse Curl",
-        "Dumbbell Reverse Wrist Curl",
-        "Dumbbell Romanian Deadlift",
-        "Dumbbell Shoulder Press",
-        "Dumbbell Shrugs",
-        "Dumbbell Side Lateral Raise",
         "Dumbbell Skullcrusher",
         "Dumbbell Triceps Extension",
-        "Dumbbell Wrist Curl",
-        "EZ Bar Curl ",
+        "Machine Triceps Extension",
+        "Smith Machine JM Press"
+    )
+    var bicepsExercises = listOf<String>(
+        "Barbell Curl",
+        "Barbell Preacher Curl",
+        "Barbell Reverse Curl",
+        "Cable Curl",
+        "Cable Hammer Curl",
+        "Dumbbell Concentration Curl",
+        "Dumbbell Curl",
+        "Dumbbell Hammer Curl",
+        "Dumbbell Preacher Curl",
+        "Dumbbell Reverse Curl",
+        "EZ Bar Curl",
+        "EZ Bar Curl",
         "EZ Bar Preacher Curl",
-        "Goblet Squat",
-        "Hack Squat",
-        "Hip Abductor",
+    )
+    var forearmExercises = listOf<String>(
+        "Cable Reverse Wrist Curl",
+        "Cable Wrist Curl",
+        "Dumbbell Reverse Wrist Curl",
+        "Dumbbell Wrist Curl"
+    )
+    var backExercises = listOf<String>(
+        "Assisted Pullups",
+        "Barbell Row",
+        "Kneeling Single Arm Cable Pulldown",
+        "Landmine Barbell Row",
+        "Lat Pulldown",
+        "Machine Pulldown",
+        "Machine Row",
+        "Pullups",
+        "Seated Cable Row",
+        "Single Arm Dumbbell Row",
+        "Smith Machine Row"
+    )
+    var trapExercises = listOf<String>(
+        "Barbell Shrugs",
+        "Cable Shrugs",
+        "Dumbbell Shrugs"
+    )
+    var lowerBack = listOf<String>(
+        "Back Extension",
+        "Barbell Good Morning",
+        "Deadlift",
+        "Machine Back Extension",
+        "Sumo Deadlift",
+    )
+    var chestExercises = listOf<String>(
+        "Assisted Dip",
+        "Barbell Benchpress",
+        "Cable Fly",
+        "Dip",
+        "Dumbbell Benchpress",
+        "Dumbbell Fly",
         "Incline Barbell Benchpress",
         "Incline Dumbbell Benchpress",
         "Incline Machine Chest Press",
         "Incline Smith Machine Benchpress",
-        "Kneeling Single Arm Cable Pulldown",
-        "Landmine Barbell Row",
-        "Landmine Squat ",
-        "Lat Pulldown ",
-        "Leg Press",
-        "Legpress Calf Raise",
-        "Lying Hamstring Curl ",
-        "Machine Back Extension",
-        "Machine Belt Squat",
-        "Machine Calf Raise",
-        "Machine Chest Press",
-        "Machine Dip",
-        "Machine Leg Press",
-        "Machine Pulldown",
-        "Machine Row",
-        "Machine Shoulder Press",
-        "Machine Side Lateral Raise",
-        "Machine Triceps Extension",
+        "Mashine Chest Press",
+        "Mashine Dip",
         "Peck Deck Fly",
-        "Pendulum Squat",
-        "Pullup",
-        "Reverse Peck Deck Fly",
         "Seated Cable Fly",
-        "Seated Cable Row",
-        "Seated Hamstring Curl",
-        "Single Arm Dumbbell Row",
-        "Sissy Squat",
-        "Smith Machine Benchpress",
-        "Smith Machine Bulgarian Split Squat",
-        "Smith Machine Calf Raise",
-        "Smith Machine JM Press",
-        "Smith Machine Romanian Deadlift",
-        "Smith Machine Row",
-        "Smith Machine Squat ",
-        "Sumo Deadlift",
+        "Smith Machine Benchpress"
     )
+    val quadExercises = listOf<String>(
+        "Barbell Squat",
+        "Goblet Squat",
+        "Hack Squat",
+        "Landmine Squat",
+        "Leg Press",
+        "Machine Belt Squat",
+        "Machine Leg Press",
+        "Pendulum Squat",
+        "Sissy Squat",
+        "Smith Machine Squat"
+    )
+
     Image(
         painter = camoBackground,
         contentDescription = "Background",
@@ -138,41 +144,55 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
             .background(Color(0xFFA4B25C))
 
     )
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        ExerciseAdder(Name = "Hugo")
-
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.Top),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        ExerciseAdder(name = "Olle")
+        ExerciseAdder(name = "Hugo")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
+        ExerciseAdder(name = "Joe")
     }
 
 
 }
 
 @Composable
-private fun ExerciseAdder(Name: String) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+private fun ExerciseAdder(name: String) {
+    Card(
+        modifier = Modifier
+            .width(350.dp)
+            .height(150.dp)
+            .padding(16.dp),
+        elevation = CardDefaults.cardElevation(10.dp),
+        border = BorderStroke(1.dp, Color.Black),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        )
     ) {
-
-        Card(
-            modifier = Modifier
-                .width(350.dp)
-                .height(150.dp),
-            elevation = CardDefaults.cardElevation(10.dp),
-            border = BorderStroke(1.dp, Color.Black),
-            colors = CardDefaults.cardColors(
-                containerColor = Color.White
+        Column(modifier = Modifier.fillMaxSize()) {
+            Text(
+                text = name,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(10.dp)
             )
-        ) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                Text(
-                    text = Name,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(10.dp)
-                )
-            }
-
         }
+
     }
 }
 
@@ -185,3 +205,4 @@ fun ExercisePreview() {
         )
     }
 }
+
