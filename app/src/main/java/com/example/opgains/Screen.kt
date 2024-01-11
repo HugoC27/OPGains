@@ -138,3 +138,14 @@ sealed class Screen(val route: String) {
 
     object Exercise : Screen(route = "exercise_screen")
 }
+
+object SharedData {
+    var sets = 0
+    var amount=1
+    fun addAmount(add: Int){
+        amount=amount+add
+    }
+    fun setAmountZero(){
+        amount=0
+    }
+}
