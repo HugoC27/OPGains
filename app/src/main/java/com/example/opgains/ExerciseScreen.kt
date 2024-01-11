@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,7 +32,7 @@ import com.example.opgains.ui.theme.OPGainsTheme
 @Composable
 fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) {
     val camoBackground = painterResource(R.drawable.camo_background)
-    var shoulderExercises = listOf<String>(
+    val shoulderExercises = listOf<String>(
         "Arnold Press",
         "Barbell Shoudler Press",
         "Barbell Upright Row",
@@ -47,7 +48,7 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
         "Machine Side Lateral Raise",
         "Reverse Peck Deck Fly"
     )
-    var tricepsExercises = listOf<String>(
+    val tricepsExercises = listOf<String>(
         "Barbell JM Press",
         "Barbell Skullcrusher",
         "Barbell Triceps Extension",
@@ -58,7 +59,7 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
         "Machine Triceps Extension",
         "Smith Machine JM Press"
     )
-    var bicepsExercises = listOf<String>(
+    val bicepsExercises = listOf<String>(
         "Barbell Curl",
         "Barbell Preacher Curl",
         "Barbell Reverse Curl",
@@ -73,13 +74,13 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
         "EZ Bar Curl",
         "EZ Bar Preacher Curl",
     )
-    var forearmExercises = listOf<String>(
+    val forearmExercises = listOf<String>(
         "Cable Reverse Wrist Curl",
         "Cable Wrist Curl",
         "Dumbbell Reverse Wrist Curl",
         "Dumbbell Wrist Curl"
     )
-    var backExercises = listOf<String>(
+    val backExercises = listOf<String>(
         "Assisted Pullups",
         "Barbell Row",
         "Kneeling Single Arm Cable Pulldown",
@@ -92,19 +93,19 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
         "Single Arm Dumbbell Row",
         "Smith Machine Row"
     )
-    var trapExercises = listOf<String>(
+    val trapExercises = listOf<String>(
         "Barbell Shrugs",
         "Cable Shrugs",
         "Dumbbell Shrugs"
     )
-    var lowerBack = listOf<String>(
+    val lowerBackExercises = listOf<String>(
         "Back Extension",
         "Barbell Good Morning",
         "Deadlift",
         "Machine Back Extension",
         "Sumo Deadlift",
     )
-    var chestExercises = listOf<String>(
+    val chestExercises = listOf<String>(
         "Assisted Dip",
         "Barbell Benchpress",
         "Cable Fly",
@@ -133,7 +134,36 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
         "Sissy Squat",
         "Smith Machine Squat"
     )
-
+    val hamstringExercises = listOf<String>(
+        "Barbell Romanian Deadlift",
+        "Dumbbell Romanian Deadlift",
+        "Lying Hamstring Curl",
+        "Seated Hamstring Curl",
+        "Smith Machine Romanian Deadlift"
+    )
+    val gluteExercises = listOf<String>(
+        "Barbell Hip Thrust",
+        "Barbell Lunge",
+        "Cable Glute Kickback",
+        "Dumbbell Bulgarian Split Squats",
+        "Dumbbell Lunge",
+        "Hip Abductor",
+        "Kas Glute Bridge",
+        "Smith Machine Bulgarian Split Squat"
+    )
+    val calfExercises = listOf<String>(
+        "Barbell Calf Raise",
+        "Legpress Calf Raise",
+        "Machine Calf Raise",
+        "Smith Machine Calf Raise"
+    )
+    val abExercises = listOf<String>(
+        "Cable Crunch",
+        "Hangning Leg Raise",
+        "Lying Leg Raise",
+        "Machine Seated Crunch",
+        "Situp"
+    )
     Image(
         painter = camoBackground,
         contentDescription = "Background",
@@ -147,25 +177,49 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+            .verticalScroll(rememberScrollState())
+            .padding(top = 10.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ExerciseAdder(name = "Olle")
-        ExerciseAdder(name = "Hugo")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
-        ExerciseAdder(name = "Joe")
+        for (exercise in shoulderExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in tricepsExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in bicepsExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in forearmExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in backExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in lowerBackExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in trapExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in chestExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in quadExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in hamstringExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in calfExercises) {
+            ExerciseAdder(name = exercise)
+        }
+        for (exercise in abExercises) {
+            ExerciseAdder(name = exercise)
+        }
+
+
     }
 
 
@@ -176,17 +230,21 @@ private fun ExerciseAdder(name: String) {
     Card(
         modifier = Modifier
             .width(350.dp)
-            .height(150.dp)
-            .padding(16.dp),
+            .height(100.dp)
+            .padding(top = 2.dp, bottom = 2.dp),
         elevation = CardDefaults.cardElevation(10.dp),
         border = BorderStroke(1.dp, Color.Black),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         )
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Text(
                 text = name,
+                textAlign = TextAlign.Center,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(10.dp)
