@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -79,8 +80,8 @@ fun TrackerScreen(
     navController: NavController, modifier: Modifier = Modifier,
     trackerButtonText: String, workoutExercises: Int
 ) {
-    var amount by remember { mutableIntStateOf(workoutExercises) }
     val camoBackground = painterResource(R.drawable.camo_background)
+
 
     Image(
         painter = camoBackground,
@@ -118,9 +119,14 @@ fun TrackerScreen(
                 )
                 Spacer(Modifier.width(10.dp))
             }
+            fun EButton() {
+                SharedData.addAmount(1)
+                print(SharedData.amount)
+                //navController.navigate(route = Screen.Exercise.route)
+            }
 
             Button(
-                onClick = { amount++ },
+                onClick = { EButton() },
                 colors = ButtonDefaults.buttonColors(barButtonColor2)
             ) {
                 Spacer(Modifier.width(10.dp))
@@ -129,9 +135,13 @@ fun TrackerScreen(
                 )
                 Spacer(Modifier.width(10.dp))
             }
+            fun CancelButton(){
+                SharedData.setAmountZero()
+                navController.navigate(route=Screen.Home.route)
+            }
 
             Button(
-                onClick = { navController.navigate(route = Screen.Home.route) },
+                onClick = { CancelButton()},
                 colors = ButtonDefaults.buttonColors(barButtonColor3)
             ) {
                 Spacer(Modifier.width(10.dp))
@@ -144,9 +154,10 @@ fun TrackerScreen(
         }
     }
 
+
     @Composable
     fun ScrollableList(
-        names: List<String> = List(amount) { "$it" },
+        names: List<String> = List(SharedData.amount) { "$it" },
         onAddSet: (sets: Int, reps: Int, weight: Float) -> Unit
     ) {
         LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
@@ -294,6 +305,7 @@ fun ListItem(name: String, onAddSet: (sets: Int, reps: Int, weight: Float) -> Un
     )
 
     Card(
+        border = BorderStroke(1.dp,Color.Black),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         ),
@@ -315,18 +327,8 @@ fun ListItem(name: String, onAddSet: (sets: Int, reps: Int, weight: Float) -> Un
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
                     )
+                    SetTracker(onAddSet = onAddSet)
                 }
-
-                OutlinedButton(
-                    colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
-                    onClick = { expanded.value = !expanded.value }) {
-                    Text(if (expanded.value) "Show less" else "Show more")
-                }
-            }
-
-            if (expanded.value) {
-                // Display the set tracker for each exercise
-                SetTracker(onAddSet = onAddSet)
             }
         }
     }
@@ -334,7 +336,7 @@ fun ListItem(name: String, onAddSet: (sets: Int, reps: Int, weight: Float) -> Un
 
 @Composable
 fun SetTracker(onAddSet: (sets: Int, reps: Int, weight: Float) -> Unit) {
-    var setCount by remember { mutableStateOf(0) }
+    var setCount by remember { mutableStateOf(SharedData.sets) }
     var setsData by remember { mutableStateOf<List<SetData>>(emptyList()) }
 
     Column(
