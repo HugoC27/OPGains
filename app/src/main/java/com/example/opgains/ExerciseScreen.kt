@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -34,7 +36,7 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
     val camoBackground = painterResource(R.drawable.camo_background)
     val shoulderExercises = listOf<String>(
         "Arnold Press",
-        "Barbell Shoudler Press",
+        "Barbell Shoulder Press",
         "Barbell Upright Row",
         "Cable Face Pulls",
         "Cable Front Raises",
@@ -50,11 +52,11 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
     )
     val tricepsExercises = listOf<String>(
         "Barbell JM Press",
-        "Barbell Skullcrusher",
+        "Barbell Skull Crusher",
         "Barbell Triceps Extension",
         "Cable Triceps Extension",
-        "Cable Triceps Pushdown",
-        "Dumbbell Skullcrusher",
+        "Cable Triceps Push Down",
+        "Dumbbell Skull Crusher",
         "Dumbbell Triceps Extension",
         "Machine Triceps Extension",
         "Smith Machine JM Press"
@@ -81,14 +83,14 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
         "Dumbbell Wrist Curl"
     )
     val backExercises = listOf<String>(
-        "Assisted Pullups",
+        "Assisted Pull Up",
         "Barbell Row",
-        "Kneeling Single Arm Cable Pulldown",
+        "Kneeling Single Arm Cable Pull Down",
         "Landmine Barbell Row",
-        "Lat Pulldown",
-        "Machine Pulldown",
+        "Lat Pull Down",
+        "Machine Pull Down",
         "Machine Row",
-        "Pullups",
+        "Pull Up",
         "Seated Cable Row",
         "Single Arm Dumbbell Row",
         "Smith Machine Row"
@@ -107,20 +109,20 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
     )
     val chestExercises = listOf<String>(
         "Assisted Dip",
-        "Barbell Benchpress",
+        "Barbell Bench Press",
         "Cable Fly",
         "Dip",
-        "Dumbbell Benchpress",
+        "Dumbbell Bench Press",
         "Dumbbell Fly",
-        "Incline Barbell Benchpress",
-        "Incline Dumbbell Benchpress",
+        "Incline Barbell Bench Press",
+        "Incline Dumbbell Bench Press",
         "Incline Machine Chest Press",
-        "Incline Smith Machine Benchpress",
-        "Mashine Chest Press",
-        "Mashine Dip",
+        "Incline Smith Machine Bench Press",
+        "Machine Chest Press",
+        "Machine Dip",
         "Peck Deck Fly",
         "Seated Cable Fly",
-        "Smith Machine Benchpress"
+        "Smith Machine Bench Press"
     )
     val quadExercises = listOf<String>(
         "Barbell Squat",
@@ -153,16 +155,16 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
     )
     val calfExercises = listOf<String>(
         "Barbell Calf Raise",
-        "Legpress Calf Raise",
+        "Leg Press Calf Raise",
         "Machine Calf Raise",
         "Smith Machine Calf Raise"
     )
     val abExercises = listOf<String>(
         "Cable Crunch",
-        "Hangning Leg Raise",
+        "Hanging Leg Raise",
         "Lying Leg Raise",
         "Machine Seated Crunch",
-        "Situp"
+        "Sit Up"
     )
     Image(
         painter = camoBackground,
@@ -227,6 +229,7 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
 
 @Composable
 private fun ExerciseAdder(name: String) {
+    val buttonColor = ButtonDefaults.buttonColors(Color(0xFF4B5320))
     Card(
         modifier = Modifier
             .width(350.dp)
@@ -249,10 +252,22 @@ private fun ExerciseAdder(name: String) {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(10.dp)
             )
-        }
+            Button(
+                modifier = Modifier
+                    .width(250.dp)
+                    .height(35.dp),
+                onClick = {},
+                colors = buttonColor
 
+            ) {
+                Text(text = "Click To Add Exercise")
+            }
+
+        }
     }
+
 }
+
 
 @Preview(showBackground = true)
 @Composable
