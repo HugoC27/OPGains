@@ -59,52 +59,52 @@ fun VisualizationBackScreen(
         Image(
             painter = painterResource(R.drawable.back_calves),
             contentDescription = "back_calves",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreCalves)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreCalves * legsMultiplier * lowerMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.back_hamstring),
             contentDescription = "back_hamstring",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreHamstrings)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreHamstrings * legsMultiplier * lowerMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.back_glutes),
             contentDescription = "back_glutes",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreGlutes)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreGlutes * legsMultiplier * lowerMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.back_lowerback),
             contentDescription = "back_lowerback",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreLowerBack)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreLowerBack * backMultiplier * pullMultiplier * lowerMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.back_lats),
             contentDescription = "back_lats",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreLats)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreLats * backMultiplier * pullMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.back_trapezius),
             contentDescription = "back_trapezius",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreTraps)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreTraps * backMultiplier * pullMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.back_neck),
             contentDescription = "back_neck",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreNeck)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreNeck * pullMultiplier * shoulderMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.back_shoulders),
             contentDescription = "back_shoulders",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreShoulders)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreShoulders * pushMultiplier * shoulderMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.back_tricep),
             contentDescription = "back_triceps",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreTriceps)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreTriceps * pushMultiplier * armsMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.back_forearm),
             contentDescription = "back_forearm",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreForearms)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreForearms * pullMultiplier * armsMultiplier * upperMultiplier)
         )
     }
     Box(

@@ -61,67 +61,67 @@ fun VisualizationFrontScreen(
         Image(
             painter = painterResource(R.drawable.front_calf),
             contentDescription = "front_calf",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreCalves)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreCalves * legsMultiplier * lowerMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_thigh),
             contentDescription = "front_thigh",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreThigh)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreThigh * legsMultiplier * lowerMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_hip_abductor),
             contentDescription = "front_hip_abductor",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreHipAbductor)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreHipAbductor * legsMultiplier * lowerMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_abs),
             contentDescription = "front_abs",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreAbs)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreAbs * legsMultiplier * lowerMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_obliques),
             contentDescription = "front_oblique",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreOblique)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreAbs * legsMultiplier * lowerMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_lats),
             contentDescription = "front_lats",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreLats)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreLats * backMultiplier * pullMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_chest),
             contentDescription = "front_chest",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreChest)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreChest * pushMultiplier * chestMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_traps),
-            contentDescription = "front_lats",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreTraps)
+            contentDescription = "front_traps",
+            colorFilter = ColorVariableChecker(muscleVariable = scoreTraps * backMultiplier * pullMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_neck),
             contentDescription = "front_neck",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreNeck)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreNeck * pullMultiplier * backMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_shoulders),
             contentDescription = "front_shoulder",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreShoulders)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreShoulders * pushMultiplier * shoulderMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_tricep),
             contentDescription = "front_tricep",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreTriceps)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreTriceps * pushMultiplier * armsMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_bicep),
             contentDescription = "front_biceps",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreBiceps)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreBiceps * pullMultiplier * armsMultiplier * upperMultiplier)
         )
         Image(
             painter = painterResource(R.drawable.front_forearms),
             contentDescription = "front_forearms",
-            colorFilter = ColorVariableChecker(muscleVariable = scoreForearms)
+            colorFilter = ColorVariableChecker(muscleVariable = scoreForearms * pullMultiplier * armsMultiplier * upperMultiplier)
         )
     }
     Box(
@@ -165,6 +165,11 @@ fun VisualizationFrontScreen(
 @Composable
 fun ColorVariableChecker(muscleVariable: Int): ColorFilter? {
     val color: Color? = when (muscleVariable) {
+        10 -> Color(0xFF640202)
+        9 -> Color(0xFF640202)
+        8 -> Color(0xFF640202)
+        7 -> Color(0xFF640202)
+        6 -> Color(0xFF640202)
         5 -> Color(0xFFFF3B3B)
         4 -> Color(0xFFFF5353)
         3 -> Color(0xFFFF6969)

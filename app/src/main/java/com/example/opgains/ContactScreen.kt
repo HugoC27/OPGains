@@ -71,8 +71,6 @@ fun ContactScreen(navController: NavController, modifier: Modifier = Modifier) {
             }
         }
     }
-
-
     Box(
         contentAlignment = Alignment.BottomStart,
         modifier = modifier

@@ -58,22 +58,22 @@ import androidx.compose.runtime.*
 
 import androidx.compose.ui.text.input.KeyboardType
 
-var scoreCalves = (0..5).random()
-var scoreThigh = (0..5).random()
-var scoreHipAbductor = (0..5).random()
-var scoreAbs = (0..5).random()
-var scoreOblique = (0..5).random()
-var scoreLats = (0..5).random()
-var scoreChest = (0..5).random()
-var scoreTraps = (0..5).random()
-var scoreNeck = (0..5).random()
-var scoreShoulders = (0..5).random()
-var scoreTriceps = (0..5).random()
-var scoreBiceps = (0..5).random()
-var scoreForearms = (0..5).random()
-var scoreHamstrings = (0..5).random()
-var scoreGlutes = (0..5).random()
-var scoreLowerBack = (0..5).random()
+var scoreCalves = 3
+var scoreThigh = 2
+var scoreHipAbductor = 5
+var scoreAbs = 2
+var scoreOblique = 0
+var scoreLats = 1
+var scoreChest = 2
+var scoreTraps = 6
+var scoreNeck = 4
+var scoreShoulders = 1
+var scoreTriceps = 2
+var scoreBiceps = 3
+var scoreForearms = 4
+var scoreHamstrings = 1
+var scoreGlutes = 1
+var scoreLowerBack = 2
 
 @Composable
 fun TrackerScreen(
@@ -109,7 +109,7 @@ fun TrackerScreen(
                 .height(64.dp)
         ) {
             Button(
-                onClick = { navController.navigate(route = Screen.Contact.route) },
+                onClick = { navController.navigate(route = Screen.Settings.route) },
                 colors = ButtonDefaults.buttonColors(barButtonColor1)
             ) {
                 Spacer(Modifier.width(10.dp))

@@ -191,6 +191,7 @@ fun BottomBar(
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {
