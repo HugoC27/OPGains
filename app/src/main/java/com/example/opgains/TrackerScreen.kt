@@ -122,7 +122,7 @@ fun TrackerScreen(
             fun EButton() {
                 SharedData.addAmount(1)
                 print(SharedData.amount)
-                //navController.navigate(route = Screen.Exercise.route)
+                navController.navigate(route = Screen.Exercise.route)
             }
 
             Button(
