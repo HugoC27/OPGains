@@ -145,6 +145,7 @@ fun VisualizationBackScreen(
     }
 }
 
+// VisualizationTopBar funktionen skapas som gör det möjligt att backa till Tracker skärmen
 @Composable
 fun VisualizationTopBar(navController: NavController, modifier: Modifier = Modifier) {
     Row(
@@ -162,7 +163,7 @@ fun VisualizationTopBar(navController: NavController, modifier: Modifier = Modif
         ) {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "home_icon"
+                contentDescription = "arrow_icon"
             )
         }
     }

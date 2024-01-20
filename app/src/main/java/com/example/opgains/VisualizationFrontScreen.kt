@@ -162,6 +162,7 @@ fun VisualizationFrontScreen(
     }
 }
 
+//Funktion ColorVariableChecker som kollar poäng och sedan ger bilden en färg baserat på poängen
 @Composable
 fun ColorVariableChecker(muscleVariable: Int): ColorFilter? {
     val color: Color? = when (muscleVariable) {
