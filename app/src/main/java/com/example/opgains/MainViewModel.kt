@@ -457,20 +457,20 @@ private val allExercises = listOf(
         bodyPartName = "abs abdoninals"
     ),
     Exercises(
-        exerciseName = "Cable Crunch",
-        bodyPartName = "Hanging Leg Raise",
+        exerciseName = "Hanging Leg Raise",
+        bodyPartName = "abs abdoninals",
     ),
     Exercises(
-        exerciseName = "Cable Crunch",
-        bodyPartName = "Lying Leg Raise",
+        exerciseName = "Lying Leg Raise",
+        bodyPartName = "abs abdoninals",
     ),
     Exercises(
-        exerciseName = "Cable Crunch",
-        bodyPartName = "Machine Seated Crunch",
+        exerciseName = "Machine Seated Crunch",
+        bodyPartName = "abs abdoninals",
     ),
     Exercises(
-        exerciseName = "Cable Crunch",
-        bodyPartName = "Sit Up"
+        exerciseName = "Sit Up"
+        bodyPartName = "abs abdoninals",
     ),
 
 
