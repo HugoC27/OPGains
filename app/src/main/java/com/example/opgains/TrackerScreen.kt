@@ -1,9 +1,6 @@
 package com.example.opgains
 
 import android.util.Log
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -74,11 +71,15 @@ var scoreForearms = 4
 var scoreHamstrings = 1
 var scoreGlutes = 1
 var scoreLowerBack = 2
+val exerciseList = mutableListOf<Exercise>()
+data class ListItemData(val exercise: Exercise, val onAddSet: (Int, Int, Double) -> Unit)
+val listItemData = mutableListOf<ListItemData>()
+
 
 @Composable
 fun TrackerScreen(
     navController: NavController, modifier: Modifier = Modifier,
-    trackerButtonText: String, workoutExercises: Int
+    trackerButtonText: String
 ) {
     val camoBackground = painterResource(R.drawable.camo_background)
 
@@ -93,80 +94,6 @@ fun TrackerScreen(
             .background(Color(0xFFA4B25C))
 
     )
-
-    @Composable
-    fun TrackerBottomBar(
-        barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: Color,
-        icon1: ImageVector, icon3: ImageVector,
-        navController: NavController, modifier: Modifier = Modifier,
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                .background(Color(0xFF4B5320))
-                .fillMaxWidth()
-                .height(64.dp)
-        ) {
-            Button(
-                onClick = { navController.navigate(route = Screen.Settings.route) },
-                colors = ButtonDefaults.buttonColors(barButtonColor1)
-            ) {
-                Spacer(Modifier.width(10.dp))
-                Icon(
-                    imageVector = icon1,
-                    contentDescription = "Contact icon"
-                )
-                Spacer(Modifier.width(10.dp))
-            }
-            fun EButton() {
-                SharedData.addAmount(1)
-                print(SharedData.amount)
-                navController.navigate(route = Screen.Exercise.route)
-            }
-
-            Button(
-                onClick = { EButton() },
-                colors = ButtonDefaults.buttonColors(barButtonColor2)
-            ) {
-                Spacer(Modifier.width(10.dp))
-                TrackerButtonText(
-                    buttonTextStr = "Add Exercise"
-                )
-                Spacer(Modifier.width(10.dp))
-            }
-            fun CancelButton(){
-                SharedData.setAmountZero()
-                navController.navigate(route=Screen.Home.route)
-            }
-
-            Button(
-                onClick = { CancelButton()},
-                colors = ButtonDefaults.buttonColors(barButtonColor3)
-            ) {
-                Spacer(Modifier.width(10.dp))
-                Icon(
-                    imageVector = icon3,
-                    contentDescription = "Settings icon"
-                )
-                Spacer(Modifier.width(10.dp))
-            }
-        }
-    }
-
-
-    @Composable
-    fun ScrollableList(
-        names: List<String> = List(SharedData.amount) { "$it" },
-        onAddSet: (sets: Int, reps: Int, weight: Float) -> Unit
-    ) {
-        LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
-            items(items = names) { exName ->
-                ListItem(name = exName, onAddSet = onAddSet)
-            }
-        }
-    }
-
     Box(
         contentAlignment = Alignment.BottomStart,
         modifier = modifier
@@ -204,17 +131,226 @@ fun TrackerScreen(
                 .padding(top = 60.dp)
                 .padding(bottom = 60.dp)
         ) {
-            ScrollableList(
-                onAddSet = { sets, reps, weight ->
 
-                }
-            )
+            ScrollableList()
 
         }
         Spacer(modifier = Modifier.height(60.dp))
 
     }
 }
+
+@Composable
+fun TrackerBottomBar(
+    barButtonColor1: Color, barButtonColor2: Color, barButtonColor3: Color,
+    icon1: ImageVector, icon3: ImageVector,
+    navController: NavController, modifier: Modifier = Modifier,
+) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .background(Color(0xFF4B5320))
+            .fillMaxWidth()
+            .height(64.dp)
+    ) {
+        Button(
+            onClick = { navController.navigate(route = Screen.Settings.route) },
+            colors = ButtonDefaults.buttonColors(barButtonColor1)
+        ) {
+            Spacer(Modifier.width(10.dp))
+            Icon(
+                imageVector = icon1,
+                contentDescription = "Contact icon"
+            )
+            Spacer(Modifier.width(10.dp))
+        }
+        Button(
+            onClick = {
+                SharedData.addAmount(1)
+                navController.navigate(route = Screen.Exercise.route)
+                createNewListItemData(exName="Hugo Lenfjärtsson")
+                      },
+            colors = ButtonDefaults.buttonColors(barButtonColor2)
+        ) {
+            Spacer(Modifier.width(10.dp))
+            TrackerButtonText(
+                buttonTextStr = "Add Exercise"
+            )
+            Spacer(Modifier.width(10.dp))
+        }
+        Button(
+            onClick = {
+                listItemData.forEach { listItem ->
+                    listItem.exercise.sets = 0
+                }
+                listItemData.clear()
+                navController.navigate(route=Screen.Home.route)
+                      },
+            colors = ButtonDefaults.buttonColors(barButtonColor3)
+        ) {
+            Spacer(Modifier.width(10.dp))
+            Icon(
+                imageVector = icon3,
+                contentDescription = "Settings icon"
+            )
+            Spacer(Modifier.width(10.dp))
+        }
+    }
+}
+
+fun createNewListItemData(exName: String) {
+    var newExercise = Exercise(exName, 0, 0, 0.0)
+    val newListItemData = ListItemData(
+        exercise = newExercise,
+        onAddSet = { sets, reps, weight ->
+            println("Adding set for ${newExercise.name}: Sets=$sets, Reps=$reps, Weight=$weight")
+            newExercise.sets++
+            newExercise.reps = reps
+            newExercise.weight = weight
+        }
+    )
+    listItemData.add(newListItemData)
+}
+
+@Composable
+fun ScrollableList() {
+    LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
+        items(items = listItemData) { item ->
+            ListItem(exercise = item.exercise, onAddSet = item.onAddSet)
+        }
+    }
+}
+
+
+@Composable
+fun SetTracker(exercise: Exercise, onAddSet: (sets: Int, reps: Int, weight: Double) -> Unit) {
+    var setCount by remember { mutableStateOf(exercise.sets) }
+    var setsData by remember { mutableStateOf<List<SetData>>(List(setCount) { SetData(it + 1, 0, 0.0) }) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        // Header
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp)
+        ) {
+            Text(text = "Set", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Spacer(modifier = Modifier.width(20.dp))
+            Text(text = "Reps", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Spacer(modifier = Modifier.width(50.dp))
+            Text(text = "Weight (kg)", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+        }
+
+        // Set rows
+        setsData.forEach { setData ->
+            SetRow(setData = setData) { newReps, newWeight ->
+                setsData = setsData.map {
+                    if (it.setNumber == setData.setNumber) {
+                        SetData(it.setNumber, newReps, newWeight)
+                    } else {
+                        it
+                    }
+                }
+            }
+        }
+
+        // Add Set button
+        Button(
+            onClick = {
+                setCount++
+                setsData = List(setCount) { SetData(it + 1, 0, 0.0) }
+                onAddSet(0, 0, 0.0)
+                Log.d("SetTracker", "Set count: $setCount, Sets data: $setsData")
+            },
+            modifier = Modifier
+                .align(Alignment.End)
+                .padding(top = 16.dp)
+        ) {
+            Icon(imageVector = Icons.Default.Add, contentDescription = "Add Set")
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(text = "Add Set")
+        }
+    }
+}
+
+@Composable
+fun ListItem(
+    onAddSet: (sets: Int, reps: Int, weight: Double) -> Unit,
+    exercise: Exercise
+) {
+    exerciseList.add(exercise)
+    Card(
+        border = BorderStroke(1.dp, Color.Black),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        ),
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(24.dp)
+                .fillMaxWidth()
+        ) {
+
+            Row {
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                ) {
+                    Text(
+                        text = exercise.name,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp
+                    )
+                    SetTracker(
+                        exercise = exercise,
+                        onAddSet = onAddSet
+
+                    )
+                }
+            }
+        }
+    }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SetRow(setData: SetData, onValuesChanged: (Int, Double) -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp)
+    ) {
+        Text(text = "${setData.setNumber}", fontSize = 16.sp)
+        Spacer(modifier = Modifier.width(16.dp))
+        OutlinedTextField(
+            value = setData.reps.toString(),
+            onValueChange = {
+                onValuesChanged(it.toIntOrNull() ?: 0, setData.weight)
+            },
+            label = { Text("Reps") },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            modifier = Modifier
+                .width(100.dp)
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        OutlinedTextField(
+            value = setData.weight.toString(),
+            onValueChange = {
+                onValuesChanged(setData.reps, (it.toFloatOrNull() ?: 0.0f).toDouble())
+            },
+            label = { Text("Weight") },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            modifier = Modifier
+                .width(100.dp)
+        )
+    }
+}
+
 
 @Composable
 fun TrackerTopBar(
@@ -293,151 +429,19 @@ fun TrackerButtonText(buttonTextStr: String, modifier: Modifier = Modifier) {
 }
 
 
-@Composable
-fun ListItem(name: String, onAddSet: (sets: Int, reps: Int, weight: Float) -> Unit) {
-    val expanded = remember { mutableStateOf(false) }
-    val extraPadding by animateDpAsState(
-        if (expanded.value) 24.dp else 0.dp,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessLow
-        ), label = ""
-    )
 
-    Card(
-        border = BorderStroke(1.dp,Color.Black),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White
-        ),
-        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(24.dp)
-                .fillMaxWidth()
-        ) {
-
-            Row {
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                ) {
-                    Text(
-                        text = name,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
-                    SetTracker(onAddSet = onAddSet)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun SetTracker(onAddSet: (sets: Int, reps: Int, weight: Float) -> Unit) {
-    var setCount by remember { mutableStateOf(SharedData.sets) }
-    var setsData by remember { mutableStateOf<List<SetData>>(emptyList()) }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        // Header
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
-        ) {
-            Text(text = "Set", fontWeight = FontWeight.Bold, fontSize = 18.sp)
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(text = "Reps", fontWeight = FontWeight.Bold, fontSize = 18.sp)
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(text = "Weight (kg)", fontWeight = FontWeight.Bold, fontSize = 18.sp)
-        }
-
-        // Set rows
-        setsData.forEach { setData ->
-            SetRow(setData = setData) { newReps, newWeight ->
-                setsData = setsData.map {
-                    if (it.setNumber == setData.setNumber) {
-                        SetData(it.setNumber, newReps, newWeight)
-                    } else {
-                        it
-                    }
-                }
-            }
-        }
-
-        // Add Set button
-        Button(
-            onClick = {
-                setCount++
-                setsData = List(setCount) { SetData(it + 1, 0, 0.0f) }
-                onAddSet(0, 0, 0.0f)
-                Log.d("SetTracker", "Set count: $setCount, Sets data: $setsData")
-
-            },
-            modifier = Modifier
-                .align(Alignment.End)
-                .padding(top = 16.dp)
-        ) {
-            Icon(imageVector = Icons.Default.Add, contentDescription = "Add Set")
-            Spacer(modifier = Modifier.width(4.dp))
-            Text(text = "Add Set")
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SetRow(setData: SetData, onValuesChanged: (Int, Float) -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
-    ) {
-        Text(text = "${setData.setNumber}", fontSize = 16.sp)
-        Spacer(modifier = Modifier.width(16.dp))
-        OutlinedTextField(
-            value = setData.reps.toString(),
-            onValueChange = {
-                onValuesChanged(it.toIntOrNull() ?: 0, setData.weight)
-            },
-            label = { Text("Reps") },
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-            modifier = Modifier
-                .width(100.dp)
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        OutlinedTextField(
-            value = setData.weight.toString(),
-            onValueChange = {
-                onValuesChanged(setData.reps, it.toFloatOrNull() ?: 0.0f)
-            },
-            label = { Text("Weight") },
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-            modifier = Modifier
-                .width(100.dp)
-        )
-    }
-}
-
-data class SetData(val setNumber: Int, val reps: Int, val weight: Float)
+data class SetData(val setNumber: Int, val reps: Int, val weight: Double)
 
 
 @Preview(showBackground = true)
 @Composable
 fun DetailPreview() {
     OPGainsTheme {
-        //ListItem(name = "Push Up")
 
 
         TrackerScreen(
             navController = rememberNavController(),
-            trackerButtonText = "Visualize",
-            workoutExercises = 0
+            trackerButtonText = "Visualize"
         )
     }
 }

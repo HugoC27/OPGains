@@ -7,9 +7,9 @@ import androidx.compose.runtime.*
 
 data class Exercise(
     val name: String,
-    val sets: Int,
-    val reps: Int,
-    val weight: Float
+    var sets: Int,
+    var reps: Int,
+    var weight: Double
 ){
 
 
