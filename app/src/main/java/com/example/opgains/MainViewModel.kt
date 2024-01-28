@@ -6,6 +6,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 
+// Skapar klass för MainViewModel
 @OptIn(FlowPreview::class)
 class MainViewModel: ViewModel() {
 
@@ -41,6 +42,8 @@ class MainViewModel: ViewModel() {
     }
 }
 
+
+// Skapar dataklass för allExercises, samt bestämmer kriterierna för sökningen
 data class Exercises(
     val exerciseName: String,
     val bodyPartName: String
@@ -51,13 +54,14 @@ data class Exercises(
             "$bodyPartName",
 
         )
-
         return matchingCombinations.any {
             it.contains(query, ignoreCase = true)
         }
     }
 }
 
+
+// Lista med alla övningar
 private val allExercises = listOf(
     Exercises(
         exerciseName =  "Arnold Press",

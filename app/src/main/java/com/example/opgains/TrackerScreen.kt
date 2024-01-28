@@ -169,7 +169,6 @@ fun TrackerBottomBar(
             onClick = {
                 SharedData.addAmount(1)
                 navController.navigate(route = Screen.Exercise.route)
-                createNewListItemData(exName="Hugo Lenfjärtsson")
                       },
             colors = ButtonDefaults.buttonColors(barButtonColor2)
         ) {
