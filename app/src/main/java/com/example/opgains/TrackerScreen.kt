@@ -204,7 +204,7 @@ fun createNewListItemData(exName: String) {
         exercise = newExercise,
         onAddSet = { sets, reps, weight ->
             println("Adding set for ${newExercise.name}: Sets=$sets, Reps=$reps, Weight=$weight")
-            newExercise.sets++
+            newExercise.sets=sets
             newExercise.reps = reps
             newExercise.weight = weight
         }
@@ -223,7 +223,10 @@ fun ScrollableList() {
 
 
 @Composable
-fun SetTracker(exercise: Exercise, onAddSet: (sets: Int, reps: Int, weight: Double) -> Unit) {
+fun SetTracker(
+    exercise: Exercise,
+    onAddSet: (sets: Int, reps: Int, weight: Double) -> Unit
+) {
     var setCount by remember { mutableStateOf(exercise.sets) }
     var setsData by remember { mutableStateOf<List<SetData>>(List(setCount) { SetData(it + 1, 0, 0.0) }) }
 
@@ -255,6 +258,7 @@ fun SetTracker(exercise: Exercise, onAddSet: (sets: Int, reps: Int, weight: Doub
                         it
                     }
                 }
+                onAddSet(setCount, newReps, newWeight)
             }
         }
 
@@ -263,8 +267,7 @@ fun SetTracker(exercise: Exercise, onAddSet: (sets: Int, reps: Int, weight: Doub
             onClick = {
                 setCount++
                 setsData = List(setCount) { SetData(it + 1, 0, 0.0) }
-                onAddSet(0, 0, 0.0)
-                Log.d("SetTracker", "Set count: $setCount, Sets data: $setsData")
+                onAddSet(setCount, 0, 0.0)
             },
             modifier = Modifier
                 .align(Alignment.End)
@@ -276,7 +279,6 @@ fun SetTracker(exercise: Exercise, onAddSet: (sets: Int, reps: Int, weight: Doub
         }
     }
 }
-
 @Composable
 fun ListItem(
     onAddSet: (sets: Int, reps: Int, weight: Double) -> Unit,
@@ -319,6 +321,11 @@ fun ListItem(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SetRow(setData: SetData, onValuesChanged: (Int, Double) -> Unit) {
+
+    //Variables for textfield output
+    var reps by remember{ mutableStateOf(setData.reps.toString()) }
+    var weight by remember { mutableStateOf(setData.weight.toString()) }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -327,9 +334,10 @@ fun SetRow(setData: SetData, onValuesChanged: (Int, Double) -> Unit) {
         Text(text = "${setData.setNumber}", fontSize = 16.sp)
         Spacer(modifier = Modifier.width(16.dp))
         OutlinedTextField(
-            value = setData.reps.toString(),
+            value = reps,
             onValueChange = {
-                onValuesChanged(it.toIntOrNull() ?: 0, setData.weight)
+                reps=it
+                onValuesChanged(reps.toIntOrNull() ?: 0, weight.toDoubleOrNull()?:0.0)
             },
             label = { Text("Reps") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
@@ -338,9 +346,10 @@ fun SetRow(setData: SetData, onValuesChanged: (Int, Double) -> Unit) {
         )
         Spacer(modifier = Modifier.width(16.dp))
         OutlinedTextField(
-            value = setData.weight.toString(),
+            value = weight,
             onValueChange = {
-                onValuesChanged(setData.reps, (it.toFloatOrNull() ?: 0.0f).toDouble())
+                weight=it
+                onValuesChanged(reps.toIntOrNull()?:0, weight.toDoubleOrNull() ?: 0.0)
             },
             label = { Text("Weight") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
