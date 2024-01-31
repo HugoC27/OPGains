@@ -239,7 +239,7 @@ fun VisualizationBottomBar(
         ) {
             Spacer(Modifier.width(10.dp))
             BottomButtonText(
-                buttonTextStr = "Front"
+                buttonTextStr = "Front",
             )
             Spacer(Modifier.width(10.dp))
         }
@@ -288,6 +288,7 @@ fun BottomButtonText(
         text = buttonTextStr,
         textAlign = TextAlign.Center,
         fontSize = fontSize,
+        color = Color.White,
         modifier = modifier
     )
 }
@@ -301,7 +302,7 @@ fun VisualizationFrontPreview() {
             navController = rememberNavController(),
             scoreCalves = 2,
             scoreThigh = 1,
-            scoreHipAbductor = 0,
+            scoreHipAbductor = 5,
             scoreAbs = 3,
             scoreOblique = 3,
             scoreLats = 1,

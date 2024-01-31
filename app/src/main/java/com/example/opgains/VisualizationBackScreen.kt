@@ -62,6 +62,11 @@ fun VisualizationBackScreen(
             colorFilter = ColorVariableChecker(muscleVariable = scoreCalves * legsMultiplier * lowerMultiplier)
         )
         Image(
+            painter = painterResource(R.drawable.back_hip_abductor),
+            contentDescription = "back_hip_abductor",
+            colorFilter = ColorVariableChecker(muscleVariable = scoreHipAbductor * legsMultiplier * lowerMultiplier)
+        )
+        Image(
             painter = painterResource(R.drawable.back_hamstring),
             contentDescription = "back_hamstring",
             colorFilter = ColorVariableChecker(muscleVariable = scoreHamstrings * legsMultiplier * lowerMultiplier)
@@ -163,7 +168,8 @@ fun VisualizationTopBar(navController: NavController, modifier: Modifier = Modif
         ) {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "arrow_icon"
+                contentDescription = "arrow_icon",
+                tint = Color.White
             )
         }
     }
@@ -177,7 +183,7 @@ fun VisualizationBackPreview() {
             navController = rememberNavController(),
             scoreCalves = 2,
             scoreThigh = 1,
-            scoreHipAbductor = 0,
+            scoreHipAbductor = 5,
             scoreAbs = 3,
             scoreOblique = 3,
             scoreLats = 1,

@@ -161,7 +161,8 @@ fun TrackerBottomBar(
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon1,
-                contentDescription = "Contact icon"
+                contentDescription = "Settings icon",
+                tint = Color.White
             )
             Spacer(Modifier.width(10.dp))
         }
@@ -191,7 +192,8 @@ fun TrackerBottomBar(
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon3,
-                contentDescription = "Settings icon"
+                contentDescription = "Settings icon",
+                tint = Color.White
             )
             Spacer(Modifier.width(10.dp))
         }
@@ -264,6 +266,7 @@ fun SetTracker(
 
         // Add Set button
         Button(
+            colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
             onClick = {
                 setCount++
                 setsData = List(setCount) { SetData(it + 1, 0, 0.0) }
@@ -273,9 +276,12 @@ fun SetTracker(
                 .align(Alignment.End)
                 .padding(top = 16.dp)
         ) {
-            Icon(imageVector = Icons.Default.Add, contentDescription = "Add Set")
+            Icon(imageVector = Icons.Default.Add,
+                contentDescription = "Add Set",
+                tint = Color.White)
             Spacer(modifier = Modifier.width(4.dp))
-            Text(text = "Add Set")
+            Text(text = "Add Set",
+                color = Color.White)
         }
     }
 }
@@ -381,7 +387,8 @@ fun TrackerTopBar(
         ) {
             Icon(
                 imageVector = Icons.Filled.Home,
-                contentDescription = "home_icon"
+                contentDescription = "home_icon",
+                tint = Color.White
             )
         }
     }

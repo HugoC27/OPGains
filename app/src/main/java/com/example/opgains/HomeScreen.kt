@@ -160,7 +160,8 @@ fun BottomBar(
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon1,
-                contentDescription = "Contact icon"
+                contentDescription = "Contact icon",
+                tint = Color.White
             )
             Spacer(Modifier.width(10.dp))
         }
@@ -172,7 +173,8 @@ fun BottomBar(
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon2,
-                contentDescription = "Home icon"
+                contentDescription = "Home icon",
+                tint = Color.White
             )
             Spacer(Modifier.width(10.dp))
         }
@@ -184,7 +186,8 @@ fun BottomBar(
             Spacer(Modifier.width(10.dp))
             Icon(
                 imageVector = icon3,
-                contentDescription = "Settings icon"
+                contentDescription = "Settings icon",
+                tint = Color.White
             )
             Spacer(Modifier.width(10.dp))
         }

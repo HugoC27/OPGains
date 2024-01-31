@@ -69,27 +69,32 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
             .background(Color(0xFFA4B25C))
     )
 
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+    ) {
+        filterBar(
+            barButtonColor = (Color(0xFF94A150)),
+            icon = Icons.Filled.ArrowBack,
+            navController = navController
+        )
+    }
+
     // Lägger in ett sökfält och kort för alla övningar
     Box(contentAlignment = Alignment.Center,
+        modifier = modifier
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(bottom = 16.dp,start = 16.dp, end = 16.dp)
         ) {
-            Spacer(Modifier.width(10.dp))
+            Spacer(modifier = Modifier.height(70.dp))
             TextField(
                 value = searchText,
                 onValueChange = viewModel::onSearchTextChange,
                 Modifier.fillMaxWidth(),
                 placeholder = { Text(text = "Search") }
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-            filterBar(
-                barButtonColor = (Color(0xFF94A150)),
-                icon = Icons.Filled.ArrowBack,
-                navController = navController
             )
             Spacer(modifier = Modifier.height(10.dp))
             LazyColumnAdder(navController = navController)
@@ -197,7 +202,7 @@ fun filterBar(
         ) {
             Spacer(Modifier.width(10.dp))
             TrackerButtonText(
-                buttonTextStr = "Filter"
+                buttonTextStr = "Filter",
             )
             Spacer(Modifier.width(10.dp))
         }
@@ -226,7 +231,9 @@ fun filterBar(
             },
             colors = ButtonDefaults.buttonColors(barButtonColor)
         ) {
-            Text(text = "Visualize")
+            Text(
+                text = "Visualize",
+                color = Color.White)
         }
     }
 }
