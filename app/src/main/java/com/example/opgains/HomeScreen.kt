@@ -1,5 +1,6 @@
 package com.example.opgains
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -82,7 +83,8 @@ fun HomeScreen(
             )
             Button(
                 onClick = { navController.navigate(route = Screen.Tracker.route) },
-                colors = buttonColor
+                colors = buttonColor,
+                border = BorderStroke(1.dp, Color.Black)
             ) {
                 ButtonText(
                     buttonTextStr = buttonText,
@@ -133,6 +135,7 @@ fun ButtonText(buttonTextStr: String, modifier: Modifier = Modifier) {
         textAlign = TextAlign.Center,
         fontSize = 35.sp,
         color = Color.White,
+
         modifier = modifier
     )
 }
@@ -155,7 +158,8 @@ fun BottomBar(
         Button(
             onClick = { navController.navigate(route = Screen.Contact.route) },
             colors = ButtonDefaults.buttonColors(barButtonColor1),
-            enabled = barButtonEnabled1
+            enabled = barButtonEnabled1,
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Spacer(Modifier.width(10.dp))
             Icon(
@@ -168,7 +172,8 @@ fun BottomBar(
         Button(
             onClick = { navController.navigate(route = Screen.Home.route) },
             colors = ButtonDefaults.buttonColors(barButtonColor2),
-            enabled = barButtonEnabled2
+            enabled = barButtonEnabled2,
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Spacer(Modifier.width(10.dp))
             Icon(
@@ -181,7 +186,8 @@ fun BottomBar(
         Button(
             onClick = { navController.navigate(route = Screen.Settings.route) },
             colors = ButtonDefaults.buttonColors(barButtonColor3),
-            enabled = barButtonEnabled3
+            enabled = barButtonEnabled3,
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Spacer(Modifier.width(10.dp))
             Icon(

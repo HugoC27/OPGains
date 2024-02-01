@@ -1,5 +1,6 @@
 package com.example.opgains
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -165,6 +166,7 @@ fun VisualizationTopBar(navController: NavController, modifier: Modifier = Modif
         Button(
             onClick = { navController.navigate(route = Screen.Tracker.route) },
             colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,

@@ -1,5 +1,6 @@
 package com.example.opgains
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -235,6 +236,7 @@ fun VisualizationBottomBar(
                 )
             },
             colors = ButtonDefaults.buttonColors(visButtonColor1),
+            border = BorderStroke(1.dp, Color.Black),
             enabled = visButtonEnabled1
         ) {
             Spacer(Modifier.width(10.dp))
@@ -267,6 +269,7 @@ fun VisualizationBottomBar(
                 )
             },
             colors = ButtonDefaults.buttonColors(visButtonColor2),
+            border = BorderStroke(1.dp, Color.Black),
             enabled = visButtonEnabled2
         ) {
             Spacer(Modifier.width(10.dp))

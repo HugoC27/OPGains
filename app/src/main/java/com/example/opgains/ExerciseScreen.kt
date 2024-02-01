@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -29,12 +30,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -46,15 +45,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.opgains.ui.theme.OPGainsTheme
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) {
 
     // Hämtar information från MainViewModel
     val viewModel = viewModel<MainViewModel>()
     val searchText by viewModel.searchText.collectAsState()
-    val controller = LocalSoftwareKeyboardController.current
-    val buttonColor = ButtonDefaults.buttonColors(Color(0xFF4B5320))
+    val buttonColor = Color(0xFF94A150)
 
 
     // Bakgrundsbild
@@ -73,33 +71,45 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
         modifier = modifier
             .fillMaxSize()
     ) {
-        filterBar(
+        TopBar(
             barButtonColor = (Color(0xFF94A150)),
             icon = Icons.Filled.ArrowBack,
             navController = navController
         )
-    }
-
-    // Lägger in ett sökfält och kort för alla övningar
-    Box(contentAlignment = Alignment.Center,
-        modifier = modifier
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(bottom = 16.dp,start = 16.dp, end = 16.dp)
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = modifier
         ) {
-            Spacer(modifier = Modifier.height(70.dp))
-            TextField(
-                value = searchText,
-                onValueChange = viewModel::onSearchTextChange,
-                Modifier.fillMaxWidth(),
-                placeholder = { Text(text = "Search") }
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            LazyColumnAdder(navController = navController)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
+            ) {
+                Spacer(modifier = Modifier.height(70.dp))
+                TextField(
+                    value = searchText,
+                    onValueChange = viewModel::onSearchTextChange,
+                    Modifier.fillMaxWidth(),
+                    placeholder = { Text(text = "Search") }
+                )
+                Spacer(modifier = Modifier.height(7.dp))
+                FilterButton(buttonColor = (Color(0xFF94A150)), modifier = modifier)
+                Spacer(modifier = Modifier.height(7.dp))
+                LazyColumnAdder(navController = navController)
+            }
+            Box(
+                contentAlignment = Alignment.BottomStart,
+                modifier = modifier
+                    .fillMaxSize()
+            ) {
+                BotBar(
+                    modifier = modifier,
+                    icon = Icons.Filled.Home,
+                    barButtonColor = buttonColor,
+                    navController = navController
+                )
+            }
         }
-        //filterfunktion här
     }
 }
 
@@ -138,7 +148,8 @@ private fun ExerciseAdder(name: String, navController: NavController) {
                     createNewListItemData(exName = name)
                     navController.navigate(route = Screen.Tracker.route)
                 },
-                colors = buttonColor
+                colors = buttonColor,
+                border = BorderStroke(1.dp, Color.Black)
             ) {
                 Text(
                     text = "Click To Add Exercise",
@@ -167,24 +178,27 @@ private fun LazyColumnAdder(navController: NavController) {
     }
 }
 
+//funktion för filterraden
 @Composable
-fun filterBar(
+fun TopBar(
     barButtonColor: Color,
     icon: ImageVector,
     navController: NavController,
     modifier: Modifier = Modifier,
 ) {
     Row(
-        horizontalArrangement = Arrangement.SpaceEvenly,
+        horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .background(Color(0xFF4B5320))
             .fillMaxWidth()
-            .height(64.dp)
+            .height(54.dp)
     ) {
+        Spacer(Modifier.width(20.dp))
         Button(
             onClick = { navController.navigate(route = Screen.Tracker.route) },
-            colors = ButtonDefaults.buttonColors(barButtonColor)
+            colors = ButtonDefaults.buttonColors(barButtonColor),
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Spacer(Modifier.width(10.dp))
             Icon(
@@ -194,18 +208,14 @@ fun filterBar(
             )
             Spacer(Modifier.width(10.dp))
         }
-        Button(
-            onClick = {
-
-            },
-            colors = ButtonDefaults.buttonColors(barButtonColor)
-        ) {
-            Spacer(Modifier.width(10.dp))
-            TrackerButtonText(
-                buttonTextStr = "Filter",
-            )
-            Spacer(Modifier.width(10.dp))
-        }
+    }
+    Row(
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .height(54.dp)
+    ) {
         Button(
             onClick = {
                 navController.navigate(
@@ -229,18 +239,78 @@ fun filterBar(
                     )
                 )
             },
-            colors = ButtonDefaults.buttonColors(barButtonColor)
+            colors = ButtonDefaults.buttonColors(barButtonColor),
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Text(
                 text = "Visualize",
-                color = Color.White)
+                color = Color.White,
+                fontSize = 15.sp
+            )
+        }
+        Spacer(Modifier.width(20.dp))
+    }
+
+}
+
+//funktion för filtret
+@Composable
+fun FilterButton(buttonColor: Color, modifier: Modifier) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+    ) {
+        Button(
+            modifier = modifier
+                .fillMaxWidth(),
+            onClick = {
+
+            },
+            colors = ButtonDefaults.buttonColors(buttonColor),
+            border = BorderStroke(1.dp, Color.Black)
+        ) {
+            Spacer(Modifier.width(10.dp))
+            Text(
+                text = "Filter",
+                color = Color.White,
+                fontSize = 25.sp
+            )
+            Spacer(Modifier.width(10.dp))
         }
     }
 }
 
 @Composable
-fun filter(){
-
+fun BotBar(
+    modifier: Modifier,
+    icon: ImageVector,
+    barButtonColor: Color,
+    navController: NavController
+) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .background(Color(0xFF4B5320))
+            .fillMaxWidth()
+            .height(64.dp)
+    ) {
+        Button(
+            onClick = { navController.navigate(route = Screen.Home.route) },
+            colors = ButtonDefaults.buttonColors(barButtonColor),
+            border = BorderStroke(1.dp, Color.Black)
+        ) {
+            Spacer(Modifier.width(10.dp))
+            Icon(
+                imageVector = icon,
+                contentDescription = "Home icon",
+                tint = Color.White
+            )
+            Spacer(Modifier.width(10.dp))
+        }
+    }
 }
 
 @Preview(showBackground = true)

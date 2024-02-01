@@ -156,7 +156,8 @@ fun TrackerBottomBar(
     ) {
         Button(
             onClick = { navController.navigate(route = Screen.Settings.route) },
-            colors = ButtonDefaults.buttonColors(barButtonColor1)
+            colors = ButtonDefaults.buttonColors(barButtonColor1),
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Spacer(Modifier.width(10.dp))
             Icon(
@@ -171,7 +172,8 @@ fun TrackerBottomBar(
                 SharedData.addAmount(1)
                 navController.navigate(route = Screen.Exercise.route)
                       },
-            colors = ButtonDefaults.buttonColors(barButtonColor2)
+            colors = ButtonDefaults.buttonColors(barButtonColor2),
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Spacer(Modifier.width(10.dp))
             TrackerButtonText(
@@ -187,7 +189,8 @@ fun TrackerBottomBar(
                 listItemData.clear()
                 navController.navigate(route=Screen.Home.route)
                       },
-            colors = ButtonDefaults.buttonColors(barButtonColor3)
+            colors = ButtonDefaults.buttonColors(barButtonColor3),
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Spacer(Modifier.width(10.dp))
             Icon(
@@ -384,6 +387,7 @@ fun TrackerTopBar(
         Button(
             onClick = { navController.navigate(route = Screen.Home.route) },
             colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             Icon(
                 imageVector = Icons.Filled.Home,
@@ -423,6 +427,7 @@ fun TrackerTopBar(
                 )
             },
             colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
+            border = BorderStroke(1.dp, Color.Black)
         ) {
             TrackerButtonText(
                 buttonTextStr = trackerButtonText2,
