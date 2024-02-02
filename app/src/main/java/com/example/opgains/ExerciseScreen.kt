@@ -47,13 +47,9 @@ import com.example.opgains.ui.theme.OPGainsTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) {
-
     // Hämtar information från MainViewModel
     val viewModel = viewModel<MainViewModel>()
     val searchText by viewModel.searchText.collectAsState()
-    val buttonColor = Color(0xFF94A150)
-    val filterText = "Back"
-
 
     // Bakgrundsbild
     val camoBackground = painterResource(R.drawable.camo_background)
@@ -90,7 +86,8 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
                     value = searchText,
                     onValueChange = viewModel::onSearchTextChange,
                     Modifier.fillMaxWidth(),
-                    placeholder = { Text(text = "Search") }
+                    placeholder = { Text(text = "Search") },
+
                 )
                 Spacer(modifier = Modifier.height(7.dp))
                 Spacer(modifier = Modifier.height(7.dp))
@@ -139,7 +136,6 @@ private fun ExerciseAdder(exName: String, musName: String, navController: NavCon
                     .width(250.dp)
                     .height(35.dp),
                 onClick = {
-                    SharedData.addAmount(1)
                     createNewListItemData(exName = exName, musName = musName)
                     navController.navigate(route = Screen.Tracker.route)
                 },
@@ -207,6 +203,7 @@ fun TopBar(
             )
             Spacer(Modifier.width(10.dp))
         }
+        Spacer(Modifier.width(20.dp))
     }
     Row(
         horizontalArrangement = Arrangement.End,
@@ -250,66 +247,6 @@ fun TopBar(
         Spacer(Modifier.width(20.dp))
     }
 
-}
-
-//funktion för filtret
-@Composable
-fun FilterButton(buttonColor: Color, modifier: Modifier) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .fillMaxWidth()
-    ) {
-        Button(
-            modifier = modifier
-                .fillMaxWidth(),
-            onClick = {
-
-            },
-            colors = ButtonDefaults.buttonColors(buttonColor),
-            border = BorderStroke(1.dp, Color.Black)
-        ) {
-            Spacer(Modifier.width(10.dp))
-            Text(
-                text = "Filter",
-                color = Color.White,
-                fontSize = 25.sp
-            )
-            Spacer(Modifier.width(10.dp))
-        }
-    }
-}
-
-@Composable
-fun BotBar(
-    modifier: Modifier,
-    icon: ImageVector,
-    barButtonColor: Color,
-    navController: NavController
-) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .background(Color(0xFF4B5320))
-            .fillMaxWidth()
-            .height(64.dp)
-    ) {
-        Button(
-            onClick = { navController.navigate(route = Screen.Home.route) },
-            colors = ButtonDefaults.buttonColors(barButtonColor),
-            border = BorderStroke(1.dp, Color.Black)
-        ) {
-            Spacer(Modifier.width(10.dp))
-            Icon(
-                imageVector = icon,
-                contentDescription = "Home icon",
-                tint = Color.White
-            )
-            Spacer(Modifier.width(10.dp))
-        }
-    }
 }
 
 @Preview(showBackground = true)

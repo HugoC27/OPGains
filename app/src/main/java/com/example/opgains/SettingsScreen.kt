@@ -2,7 +2,6 @@ package com.example.opgains
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -69,7 +68,7 @@ fun SettingsScreen(navController: NavController, modifier: Modifier = Modifier) 
         )
     }
     Box(
-        contentAlignment = Alignment.TopStart,
+        contentAlignment = Alignment.Center,
         modifier = modifier
             .fillMaxSize()
             .selectableGroup()
@@ -113,57 +112,13 @@ fun SettingsScreen(navController: NavController, modifier: Modifier = Modifier) 
                     boxName = "ul",
                     selectedOption = selectedOption,
                     onOptionSelected = onOptionSelected)
-                WorkoutSplitBox(
-                    title = "Bro split",
-                    description = "",
-                    pushMulti = 1,
-                    pullMulti = 1,
-                    legsMulti = 1,
-                    upperMulti = 1,
-                    lowerMulti = 1,
-                    chestMulti = 1,
-                    backMulti = 1,
-                    armsMulti = 1,
-                    shoulderMulti  = 1,
-                    boxName = "bro",
-                    selectedOption = selectedOption,
-                    onOptionSelected = onOptionSelected)
+                Spacer(Modifier.height(60.dp))
             }
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = modifier
                     .weight(1f)
             ) {
-                WorkoutSplitBox(
-                    title = "Push Pull Legs x2",
-                    description = "",
-                    pushMulti = 2,
-                    pullMulti = 2,
-                    legsMulti = 2,
-                    upperMulti = 1,
-                    lowerMulti = 1,
-                    chestMulti = 1,
-                    backMulti = 1,
-                    armsMulti = 1,
-                    shoulderMulti = 1,
-                    boxName = "ppl2",
-                    selectedOption = selectedOption,
-                    onOptionSelected = onOptionSelected)
-                WorkoutSplitBox(
-                    title = "Upper Lower x2",
-                    description = "",
-                    pushMulti = 1,
-                    pullMulti = 1,
-                    legsMulti = 1,
-                    upperMulti = 2,
-                    lowerMulti = 2,
-                    chestMulti = 1,
-                    backMulti = 1,
-                    armsMulti = 1,
-                    shoulderMulti  = 1,
-                    boxName = "ul2",
-                    selectedOption = selectedOption,
-                    onOptionSelected = onOptionSelected)
                 WorkoutSplitBox(
                     title = "Full Body",
                     description = "",
@@ -180,6 +135,21 @@ fun SettingsScreen(navController: NavController, modifier: Modifier = Modifier) 
                     selectedOption = selectedOption,
                     onOptionSelected = onOptionSelected
                 )
+                WorkoutSplitBox(
+                    title = "Bro split",
+                    description = "",
+                    pushMulti = 1,
+                    pullMulti = 1,
+                    legsMulti = 1,
+                    upperMulti = 1,
+                    lowerMulti = 1,
+                    chestMulti = 1,
+                    backMulti = 1,
+                    armsMulti = 1,
+                    shoulderMulti  = 1,
+                    boxName = "bro",
+                    selectedOption = selectedOption,
+                    onOptionSelected = onOptionSelected)
             }
         }
     }

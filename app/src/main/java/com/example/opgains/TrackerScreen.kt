@@ -333,7 +333,7 @@ fun SetRow(set: Int, repsList: MutableList<Int>, weightList: MutableList<Double>
     // Variables for textfield output
     var reps by remember { mutableStateOf(repsList.getOrElse(set) { 0 }.toString()) }
     var weight by remember { mutableStateOf(weightList.getOrElse(set) { 0.0 }.toString()) }
-    var displaySet = set + 1
+    val displaySet = set + 1
 
     Row(
         modifier = Modifier
@@ -451,7 +451,7 @@ fun TrackerButtonText(buttonTextStr: String, modifier: Modifier = Modifier) {
 
 
 
-data class SetData(val setNumber: Int, val reps: Int, val weight: Double)
+
 
 
 @Preview(showBackground = true)

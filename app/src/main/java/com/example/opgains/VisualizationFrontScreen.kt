@@ -50,119 +50,118 @@ fun VisualizationFrontScreen(
     scoreGlutes: Int,
     scoreLowerBack: Int
 ) {
-    var scoreCalves=0
+    var scoreCalves = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Calf Calves") {
-            scoreCalves+=item.exercise.sets
+            scoreCalves += item.exercise.sets
 
         }
     }
-    var scoreThigh=0
+    var scoreThigh = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Quads") {
-            scoreThigh+=item.exercise.sets
+            scoreThigh += item.exercise.sets
 
         }
     }
-    var scoreHipAbductor=0
+    var scoreHipAbductor = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Adductors") {
-            scoreHipAbductor+=item.exercise.sets
+            scoreHipAbductor += item.exercise.sets
 
         }
     }
-    var scoreAbs=0
+    var scoreAbs = 0
     for (item in listItemData) {
         if (item.exercise.musName == "abs abdoninals") {
-            scoreAbs+=item.exercise.sets
+            scoreAbs += item.exercise.sets
 
         }
     }
-    var scoreOblique=0
+    var scoreOblique = 0
     for (item in listItemData) {
         if (item.exercise.musName == "abs abdoninals") {
-            scoreOblique+=item.exercise.sets
+            scoreOblique += item.exercise.sets
 
         }
     }
-    var scoreLats=0
+    var scoreLats = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Back") {
-            scoreLats+=item.exercise.sets
+            scoreLats += item.exercise.sets
 
         }
     }
-    var scoreChest=0
+    var scoreChest = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Chest") {
-            scoreChest+=item.exercise.sets
+            scoreChest += item.exercise.sets
 
         }
     }
-    var scoreTraps=0
+    var scoreTraps = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Traps") {
-            scoreTraps+=item.exercise.sets
+            scoreTraps += item.exercise.sets
 
         }
     }
-    var scoreNeck=0
+    var scoreNeck = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Neck") {
-            scoreNeck+=item.exercise.sets
+            scoreNeck += item.exercise.sets
 
         }
     }
-    var scoreShoulders=0
+    var scoreShoulders = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Shoulder") {
-            scoreShoulders+=item.exercise.sets
+            scoreShoulders += item.exercise.sets
 
         }
     }
-    var scoreTriceps=0
+    var scoreTriceps = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Triceps") {
-            scoreTriceps+=item.exercise.sets
+            scoreTriceps += item.exercise.sets
 
         }
     }
-    var scoreBiceps=0
+    var scoreBiceps = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Biceps") {
-            scoreBiceps+=item.exercise.sets
+            scoreBiceps += item.exercise.sets
 
         }
     }
-    var scoreForearms=0
+    var scoreForearms = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Forearms") {
-            scoreForearms+=item.exercise.sets
+            scoreForearms += item.exercise.sets
 
         }
     }
-    var scoreHamstrings=0
+    var scoreHamstrings = 0
     for (item in listItemData) {
         if (item.exercise.musName == "hamstrings") {
-            scoreHamstrings+=item.exercise.sets
+            scoreHamstrings += item.exercise.sets
 
         }
     }
-    var scoreGlutes=0
+    var scoreGlutes = 0
     for (item in listItemData) {
         if (item.exercise.musName == "glutes") {
-            scoreGlutes+=item.exercise.sets
+            scoreGlutes += item.exercise.sets
 
         }
     }
-    var scoreLowerBack=0
+    var scoreLowerBack = 0
     for (item in listItemData) {
         if (item.exercise.musName == "Lower back") {
-            scoreLowerBack+=item.exercise.sets
+            scoreLowerBack += item.exercise.sets
 
         }
     }
-    println("Adding set for ${scoreBiceps}: ")
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
@@ -285,16 +284,13 @@ fun VisualizationFrontScreen(
 @Composable
 fun ColorVariableChecker(muscleVariable: Int): ColorFilter? {
     val color: Color? = when (muscleVariable) {
-        10 -> Color(0xFF640202)
-        9 -> Color(0xFF640202)
-        8 -> Color(0xFF640202)
-        7 -> Color(0xFF640202)
-        6 -> Color(0xFF640202)
-        5 -> Color(0xFFFF3B3B)
-        4 -> Color(0xFFFF5353)
-        3 -> Color(0xFFFF6969)
-        2 -> Color(0xFFFF7E7E)
-        1 -> Color(0xFFFF9696)
+        in 13..1000 -> Color(0xFF640202)
+        in 9..12 -> Color(0xFFFF3B3B)
+        8 -> Color(0xFFFF5353)
+        in 6..7 -> Color(0xFFFF6969)
+        in 4..5 -> Color(0xFFFF7E7E)
+        in 2..3 -> Color(0xFFFF9696)
+        in 0..1 -> null
         else -> null
     }
     return color?.let { ColorFilter.tint(it) }
