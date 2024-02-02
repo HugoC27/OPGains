@@ -1,6 +1,5 @@
 package com.example.opgains
 
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,13 +22,10 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -52,6 +48,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.text.input.ImeAction
 
 import androidx.compose.ui.text.input.KeyboardType
 
@@ -132,7 +129,7 @@ fun TrackerScreen(
                 .padding(bottom = 60.dp)
         ) {
 
-            ScrollableList()
+            ScrollableList(navController = navController)
 
         }
         Spacer(modifier = Modifier.height(60.dp))
@@ -204,24 +201,29 @@ fun TrackerBottomBar(
 }
 
 fun createNewListItemData(exName: String) {
-    var newExercise = Exercise(exName, 0, 0, 0.0)
+    var repsTracker= mutableListOf<Int>()
+    var weightTracker= mutableListOf<Double>()
+
+
+    var newExercise = Exercise(exName, 1, repsTracker, weightTracker)
+
     val newListItemData = ListItemData(
         exercise = newExercise,
         onAddSet = { sets, reps, weight ->
             println("Adding set for ${newExercise.name}: Sets=$sets, Reps=$reps, Weight=$weight")
             newExercise.sets=sets
-            newExercise.reps = reps
-            newExercise.weight = weight
+            newExercise.repsList[0] = reps
+            newExercise.weightList[0] = weight
         }
     )
     listItemData.add(newListItemData)
 }
 
 @Composable
-fun ScrollableList() {
+fun ScrollableList(navController:NavController) {
     LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
         items(items = listItemData) { item ->
-            ListItem(exercise = item.exercise, onAddSet = item.onAddSet)
+            ListItem(exercise = item.exercise, onAddSet = item.onAddSet,navController=navController)
         }
     }
 }
@@ -230,10 +232,10 @@ fun ScrollableList() {
 @Composable
 fun SetTracker(
     exercise: Exercise,
+    navController:NavController,
     onAddSet: (sets: Int, reps: Int, weight: Double) -> Unit
 ) {
-    var setCount by remember { mutableStateOf(exercise.sets) }
-    var setsData by remember { mutableStateOf<List<SetData>>(List(setCount) { SetData(it + 1, 0, 0.0) }) }
+
 
     Column(
         modifier = Modifier
@@ -253,17 +255,14 @@ fun SetTracker(
             Text(text = "Weight (kg)", fontWeight = FontWeight.Bold, fontSize = 18.sp)
         }
 
-        // Set rows
-        setsData.forEach { setData ->
-            SetRow(setData = setData) { newReps, newWeight ->
-                setsData = setsData.map {
-                    if (it.setNumber == setData.setNumber) {
-                        SetData(it.setNumber, newReps, newWeight)
-                    } else {
-                        it
-                    }
-                }
-                onAddSet(setCount, newReps, newWeight)
+        //SetRows
+        for (i in 0 until exercise.sets) {
+            exercise.repsList.add(0)
+            exercise.weightList.add(0.0)
+            SetRow(set = i, repsList = exercise.repsList , weightList = exercise.weightList ){ reps, weight ->
+                // This block of code will be executed when the values change
+                // Update your data, perform calculations, or trigger other actions
+                println("Reps: ${exercise.repsList[i]}, Weight: $weight")
             }
         }
 
@@ -271,9 +270,12 @@ fun SetTracker(
         Button(
             colors = ButtonDefaults.buttonColors(Color(0xFF94A150)),
             onClick = {
-                setCount++
-                setsData = List(setCount) { SetData(it + 1, 0, 0.0) }
-                onAddSet(setCount, 0, 0.0)
+                // Update Exercise properties and trigger recomposition
+                exercise.sets++
+                exercise.repsList.add(0)
+                exercise.weightList.add(0.0)
+                navController.navigate(route = Screen.Tracker.route)
+
             },
             modifier = Modifier
                 .align(Alignment.End)
@@ -291,7 +293,8 @@ fun SetTracker(
 @Composable
 fun ListItem(
     onAddSet: (sets: Int, reps: Int, weight: Double) -> Unit,
-    exercise: Exercise
+    exercise: Exercise,
+    navController:NavController
 ) {
     exerciseList.add(exercise)
     Card(
@@ -319,7 +322,8 @@ fun ListItem(
                     )
                     SetTracker(
                         exercise = exercise,
-                        onAddSet = onAddSet
+                        onAddSet = onAddSet,
+                        navController=navController
 
                     )
                 }
@@ -329,44 +333,45 @@ fun ListItem(
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SetRow(setData: SetData, onValuesChanged: (Int, Double) -> Unit) {
-
-    //Variables for textfield output
-    var reps by remember{ mutableStateOf(setData.reps.toString()) }
-    var weight by remember { mutableStateOf(setData.weight.toString()) }
+fun SetRow(set: Int, repsList: MutableList<Int>, weightList: MutableList<Double>, onValuesChanged: (Int, Double) -> Unit) {
+    // Variables for textfield output
+    var reps by remember { mutableStateOf(repsList.getOrElse(set) { 0 }.toString()) }
+    var weight by remember { mutableStateOf(weightList.getOrElse(set) { 0.0 }.toString()) }
+    var displaySet = set + 1
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
     ) {
-        Text(text = "${setData.setNumber}", fontSize = 16.sp)
+        Text(text = "$displaySet", fontSize = 16.sp)
         Spacer(modifier = Modifier.width(16.dp))
         OutlinedTextField(
             value = reps,
             onValueChange = {
-                reps=it
-                onValuesChanged(reps.toIntOrNull() ?: 0, weight.toDoubleOrNull()?:0.0)
+                reps = it
+                repsList[set] = it.toIntOrNull() ?: 0
+                onValuesChanged(repsList[set], weightList[set])
             },
             label = { Text("Reps") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-            modifier = Modifier
-                .width(100.dp)
+            modifier = Modifier.width(100.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         OutlinedTextField(
             value = weight,
             onValueChange = {
-                weight=it
-                onValuesChanged(reps.toIntOrNull()?:0, weight.toDoubleOrNull() ?: 0.0)
+                weight = it
+                weightList[set] = it.toDoubleOrNull() ?: 0.0
+                onValuesChanged(repsList[set], weightList[set])
             },
             label = { Text("Weight") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-            modifier = Modifier
-                .width(100.dp)
+            modifier = Modifier.width(100.dp)
         )
     }
 }
+
 
 
 @Composable

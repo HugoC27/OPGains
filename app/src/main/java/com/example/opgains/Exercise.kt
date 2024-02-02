@@ -8,8 +8,8 @@ import androidx.compose.runtime.*
 data class Exercise(
     val name: String,
     var sets: Int,
-    var reps: Int,
-    var weight: Double
+    var repsList: MutableList<Int>,
+    var weightList: MutableList<Double>
 ){
 
 
