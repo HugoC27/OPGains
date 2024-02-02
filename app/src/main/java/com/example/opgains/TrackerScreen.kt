@@ -43,12 +43,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.opgains.ui.theme.OPGainsTheme
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.text.input.ImeAction
 
 import androidx.compose.ui.text.input.KeyboardType
 
@@ -166,7 +163,6 @@ fun TrackerBottomBar(
         }
         Button(
             onClick = {
-                SharedData.addAmount(1)
                 navController.navigate(route = Screen.Exercise.route)
                       },
             colors = ButtonDefaults.buttonColors(barButtonColor2),
@@ -200,12 +196,12 @@ fun TrackerBottomBar(
     }
 }
 
-fun createNewListItemData(exName: String) {
+fun createNewListItemData(exName: String, musName: String) {
     var repsTracker= mutableListOf<Int>()
     var weightTracker= mutableListOf<Double>()
 
 
-    var newExercise = Exercise(exName, 1, repsTracker, weightTracker)
+    var newExercise = Exercise(exName, musName, 1,repsTracker, weightTracker)
 
     val newListItemData = ListItemData(
         exercise = newExercise,

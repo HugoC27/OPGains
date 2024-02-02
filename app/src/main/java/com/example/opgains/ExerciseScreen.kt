@@ -17,7 +17,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -53,6 +52,7 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
     val viewModel = viewModel<MainViewModel>()
     val searchText by viewModel.searchText.collectAsState()
     val buttonColor = Color(0xFF94A150)
+    val filterText = "Back"
 
 
     // Bakgrundsbild
@@ -83,7 +83,7 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
+                    .padding(start = 16.dp, end = 16.dp)
             ) {
                 Spacer(modifier = Modifier.height(70.dp))
                 TextField(
@@ -93,7 +93,6 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
                     placeholder = { Text(text = "Search") }
                 )
                 Spacer(modifier = Modifier.height(7.dp))
-                FilterButton(buttonColor = (Color(0xFF94A150)), modifier = modifier)
                 Spacer(modifier = Modifier.height(7.dp))
                 LazyColumnAdder(navController = navController)
             }
@@ -102,12 +101,7 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
                 modifier = modifier
                     .fillMaxSize()
             ) {
-                BotBar(
-                    modifier = modifier,
-                    icon = Icons.Filled.Home,
-                    barButtonColor = buttonColor,
-                    navController = navController
-                )
+
             }
         }
     }
@@ -116,7 +110,7 @@ fun ExerciseScreen(navController: NavController, modifier: Modifier = Modifier) 
 
 // Funktion för att göra korten
 @Composable
-private fun ExerciseAdder(name: String, navController: NavController) {
+private fun ExerciseAdder(exName: String, musName: String, navController: NavController) {
     val buttonColor = ButtonDefaults.buttonColors(Color(0xFF4B5320))
     Card(
         modifier = Modifier
@@ -134,7 +128,7 @@ private fun ExerciseAdder(name: String, navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = name,
+                text = exName,
                 textAlign = TextAlign.Center,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
@@ -145,7 +139,8 @@ private fun ExerciseAdder(name: String, navController: NavController) {
                     .width(250.dp)
                     .height(35.dp),
                 onClick = {
-                    createNewListItemData(exName = name)
+                    SharedData.addAmount(1)
+                    createNewListItemData(exName = exName, musName = musName)
                     navController.navigate(route = Screen.Tracker.route)
                 },
                 colors = buttonColor,
@@ -173,7 +168,11 @@ private fun LazyColumnAdder(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(exercises) { exercise ->
-            ExerciseAdder(name = exercise.exerciseName, navController = navController)
+            ExerciseAdder(
+                exName = exercise.exerciseName,
+                navController = navController,
+                musName = exercise.bodyPartName
+            )
         }
     }
 }
