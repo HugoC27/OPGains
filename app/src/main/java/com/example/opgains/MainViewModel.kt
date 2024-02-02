@@ -64,7 +64,7 @@ data class Exercises(
 // Lista med alla övningar
 private val allExercises = listOf(
     Exercises(
-        exerciseName =  "Arnold Press",
+        exerciseName = "Arnold Press",
         bodyPartName = "Shoulder"
     ),
     Exercises(
@@ -458,23 +458,23 @@ private val allExercises = listOf(
 
     Exercises(
         exerciseName = "Cable Crunch",
-        bodyPartName = "abs abdoninals"
+        bodyPartName = "abs abdominals"
     ),
     Exercises(
         exerciseName = "Hanging Leg Raise",
-        bodyPartName = "abs abdoninals"
+        bodyPartName = "abs abdominals"
     ),
     Exercises(
         exerciseName = "Lying Leg Raise",
-        bodyPartName = "abs abdoninals"
+        bodyPartName = "abs abdominals"
     ),
     Exercises(
-        exerciseName = "Machine Seated Crunch",
-        bodyPartName = "abs abdoninals"
+        exerciseName = "Seated Machine Crunch",
+        bodyPartName = "abs abdominals"
     ),
     Exercises(
         exerciseName = "Sit Up",
-        bodyPartName = "abs abdoninals"
+        bodyPartName = "abs abdominals"
     ),
 
 
@@ -497,6 +497,10 @@ private val allExercises = listOf(
     ),
     Exercises(
         exerciseName = "Landmine Squat",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Leg Extension",
         bodyPartName = "Quads"
     ),
     Exercises(
