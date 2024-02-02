@@ -3,6 +3,7 @@ package com.example.opgains
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -28,6 +30,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.opgains.ui.theme.OPGainsTheme
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.modifier.modifierLocalConsumer
 
 @Composable
 fun VisualizationFrontScreen(
@@ -166,6 +170,7 @@ fun VisualizationFrontScreen(
         contentAlignment = Alignment.Center,
         modifier = modifier
             .fillMaxSize()
+            .background(Color.White)
     ) {
         Image(
             painter = painterResource(R.drawable.front_template2),
@@ -277,6 +282,18 @@ fun VisualizationFrontScreen(
             .fillMaxSize()
     ) {
         VisualizationTopBar(navController = navController)
+    }
+    Box(
+        contentAlignment = Alignment.BottomStart,
+        modifier = modifier
+            .fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(R.drawable.colorexplainer),
+            contentDescription = "Description of color codes",
+            modifier = modifier
+                .padding(bottom = 80.dp)
+        )
     }
 }
 
@@ -409,7 +426,6 @@ fun BottomButtonText(
         modifier = modifier
     )
 }
-
 
 @Preview(showBackground = true)
 @Composable

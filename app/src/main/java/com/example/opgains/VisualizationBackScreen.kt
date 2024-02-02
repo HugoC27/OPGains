@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -52,6 +53,7 @@ fun VisualizationBackScreen(
         contentAlignment = Alignment.Center,
         modifier = modifier
             .fillMaxSize()
+            .background(Color.White)
     ) {
         Image(
             painter = painterResource(R.drawable.back_template),
@@ -153,6 +155,18 @@ fun VisualizationBackScreen(
             .fillMaxSize()
     ) {
         VisualizationTopBar(navController = navController)
+    }
+    Box(
+        contentAlignment = Alignment.BottomStart,
+        modifier = modifier
+            .fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(R.drawable.colorexplainer),
+            contentDescription = "Description of color codes",
+            modifier = modifier
+                .padding(bottom = 80.dp)
+        )
     }
 }
 
