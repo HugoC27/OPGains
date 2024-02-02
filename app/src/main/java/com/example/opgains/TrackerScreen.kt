@@ -49,25 +49,25 @@ import androidx.compose.material3.*
 
 import androidx.compose.ui.text.input.KeyboardType
 
-var scoreCalves = 3
-var scoreThigh = 2
-var scoreHipAbductor = 5
-var scoreAbs = 2
+var scoreCalves = 0
+var scoreThigh = 0
+var scoreHipAbductor = 0
+var scoreAbs = 0
 var scoreOblique = 0
-var scoreLats = 1
-var scoreChest = 2
-var scoreTraps = 6
-var scoreNeck = 4
-var scoreShoulders = 1
-var scoreTriceps = 2
-var scoreBiceps = 3
-var scoreForearms = 4
-var scoreHamstrings = 1
-var scoreGlutes = 1
-var scoreLowerBack = 2
+var scoreLats = 0
+var scoreChest = 0
+var scoreTraps = 0
+var scoreNeck = 0
+var scoreShoulders = 0
+var scoreTriceps = 0
+var scoreBiceps = 0
+var scoreForearms = 0
+var scoreHamstrings = 0
+var scoreGlutes = 0
+var scoreLowerBack =0
 val exerciseList = mutableListOf<Exercise>()
 data class ListItemData(val exercise: Exercise, val onAddSet: (Int, Int, Double) -> Unit)
-val listItemData = mutableListOf<ListItemData>()
+var listItemData = mutableListOf<ListItemData>()
 
 
 @Composable

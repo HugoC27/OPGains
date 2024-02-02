@@ -479,6 +479,65 @@ private val allExercises = listOf(
 
 
 
+    Exercises(
+        exerciseName = "Barbell Squat",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Goblet Squat",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Smith Machine Squat",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Sissy Squat",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Landmine Squat",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Hack Squat",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Pendulum Squat",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Machine Belt Squat",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Leg Press",
+        bodyPartName = "Quads"
+    ),
+    Exercises(
+        exerciseName = "Machine Leg Press",
+        bodyPartName = "Quads"
+    ),
+
+
+
+    Exercises(
+        exerciseName = "Lateral Lunge",
+        bodyPartName = "Adductors"
+    ),
+    Exercises(
+        exerciseName = "Sumo Squat",
+        bodyPartName = "Adductors"
+    ),
+    Exercises(
+        exerciseName = "Adductor Machine",
+        bodyPartName = "Adductors"
+    ),
+
+
+
+
 
 
 

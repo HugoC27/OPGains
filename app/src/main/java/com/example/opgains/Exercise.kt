@@ -7,7 +7,7 @@ import androidx.compose.runtime.*
 
 data class Exercise(
     val name: String,
-    val musName: String,
+    var musName: String,
     var sets: Int,
     var repsList: MutableList<Int>,
     var weightList: MutableList<Double>

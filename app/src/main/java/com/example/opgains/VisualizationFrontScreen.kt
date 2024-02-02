@@ -50,6 +50,119 @@ fun VisualizationFrontScreen(
     scoreGlutes: Int,
     scoreLowerBack: Int
 ) {
+    var scoreCalves=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Calf Calves") {
+            scoreCalves+=item.exercise.sets
+
+        }
+    }
+    var scoreThigh=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Quads") {
+            scoreThigh+=item.exercise.sets
+
+        }
+    }
+    var scoreHipAbductor=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Adductors") {
+            scoreHipAbductor+=item.exercise.sets
+
+        }
+    }
+    var scoreAbs=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "abs abdoninals") {
+            scoreAbs+=item.exercise.sets
+
+        }
+    }
+    var scoreOblique=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "abs abdoninals") {
+            scoreOblique+=item.exercise.sets
+
+        }
+    }
+    var scoreLats=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Back") {
+            scoreLats+=item.exercise.sets
+
+        }
+    }
+    var scoreChest=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Chest") {
+            scoreChest+=item.exercise.sets
+
+        }
+    }
+    var scoreTraps=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Traps") {
+            scoreTraps+=item.exercise.sets
+
+        }
+    }
+    var scoreNeck=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Neck") {
+            scoreNeck+=item.exercise.sets
+
+        }
+    }
+    var scoreShoulders=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Shoulder") {
+            scoreShoulders+=item.exercise.sets
+
+        }
+    }
+    var scoreTriceps=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Triceps") {
+            scoreTriceps+=item.exercise.sets
+
+        }
+    }
+    var scoreBiceps=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Biceps") {
+            scoreBiceps+=item.exercise.sets
+
+        }
+    }
+    var scoreForearms=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Forearms") {
+            scoreForearms+=item.exercise.sets
+
+        }
+    }
+    var scoreHamstrings=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "hamstrings") {
+            scoreHamstrings+=item.exercise.sets
+
+        }
+    }
+    var scoreGlutes=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "glutes") {
+            scoreGlutes+=item.exercise.sets
+
+        }
+    }
+    var scoreLowerBack=0
+    for (item in listItemData) {
+        if (item.exercise.musName == "Lower back") {
+            scoreLowerBack+=item.exercise.sets
+
+        }
+    }
+    println("Adding set for ${scoreBiceps}: ")
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
