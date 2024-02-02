@@ -73,6 +73,11 @@ fun VisualizationBackScreen(
             colorFilter = ColorVariableChecker(muscleVariable = scoreHamstrings * legsMultiplier * lowerMultiplier)
         )
         Image(
+            painter = painterResource(R.drawable.back_quads),
+            contentDescription = "back_quads",
+            colorFilter = ColorVariableChecker(muscleVariable = scoreThigh * legsMultiplier * lowerMultiplier)
+        )
+        Image(
             painter = painterResource(R.drawable.back_glutes),
             contentDescription = "back_glutes",
             colorFilter = ColorVariableChecker(muscleVariable = scoreGlutes * legsMultiplier * lowerMultiplier)

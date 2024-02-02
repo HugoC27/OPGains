@@ -178,6 +178,11 @@ fun VisualizationFrontScreen(
             colorFilter = ColorVariableChecker(muscleVariable = scoreCalves * legsMultiplier * lowerMultiplier)
         )
         Image(
+            painter = painterResource(R.drawable.front_calves2),
+            contentDescription = "front_calf_butwiththeaddedthing",
+            colorFilter = ColorVariableChecker(muscleVariable = scoreCalves * legsMultiplier * lowerMultiplier)
+        )
+        Image(
             painter = painterResource(R.drawable.front_thigh),
             contentDescription = "front_thigh",
             colorFilter = ColorVariableChecker(muscleVariable = scoreThigh * legsMultiplier * lowerMultiplier)
